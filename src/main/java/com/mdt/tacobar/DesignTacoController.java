@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.mdt.tacobar.Ingredient.Type;
 import javax.validation.Valid;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +36,6 @@ public class DesignTacoController {
         Type[] types = Type.values();
         for (Type type : types){
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
-//            model.addAtt
         }
 
         model.addAttribute("design", new Taco());
@@ -44,6 +44,12 @@ public class DesignTacoController {
     }
 
     private List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-
+        List<Ingredient> filteredList = new ArrayList<Ingredient>();
+        for (Ingredient ing: ingredients) {
+            if (ing.getType() == type) {
+                filteredList.add(ing);
+            }
+        }
+        return filteredList;
     }
 }
