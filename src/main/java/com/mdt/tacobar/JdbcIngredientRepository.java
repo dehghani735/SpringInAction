@@ -22,7 +22,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public Iterable<Ingredient> findAll() {
-        return jdbc.query("select id, name, type from Ingredients", this::mapRowToIngredient);
+        return jdbc.query("select id, name, type from Ingredient", this::mapRowToIngredient);
 //      The query() method accepts the SQL for the query as well as an implementation
 //of Spring’s RowMapper for the purpose of mapping each row in the result set to
 //an object.
@@ -38,7 +38,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
     @Override
     public Ingredient findOne(String id) {
 
-        return jdbc.queryForObject("select * id, name, type from Ingredients where id = ?",
+        return jdbc.queryForObject("select * id, name, type from Ingredient where id = ?",
                 this::mapRowToIngredient, id);
 //        alternative, explicit RowMapper
 //        new RowMapper<Ingredient>() {
