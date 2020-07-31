@@ -1,10 +1,13 @@
 package com.mdt.tacobar;
 
-public interface IngredientRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-    Iterable<Ingredient> findAll();
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
-    Ingredient findOne(String id);
-
-    Ingredient Save(Ingredient ingredient);
+//    Iterable<Ingredient> findAll();
+//
+//    Ingredient findOne(String id);
+//
+//    Ingredient Save(Ingredient ingredient);
 }
