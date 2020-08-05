@@ -9,5 +9,5 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 //    Order save(Order order);
 
     //customizing JPA repositories; it will select from Order because we introduce it in CrudRepository
-    List<Order> findByDeliveryZip(String deliveryZip);
+//    List<Order> findByDeliveryZip(String deliveryZip);
 }
