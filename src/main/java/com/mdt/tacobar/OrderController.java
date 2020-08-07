@@ -1,6 +1,7 @@
 package com.mdt.tacobar;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -32,15 +33,18 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@Valid Order order, Errors errors,
-                               SessionStatus sessionStatus) {
+                               SessionStatus sessionStatus,
+                               @AuthenticationPrincipal User user) {
 
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return "orderForm";
         }
 
+        order.setUser(user);
+
         orderRepo.save(order);
         sessionStatus.setComplete(); // this method will reset the session so next orders will be fresh.
-        log.info("Order submitted: " + order);
+//        log.info("Order submitted: " + order);
         return "redirect:/";
     }
 }
