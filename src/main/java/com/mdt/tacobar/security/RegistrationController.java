@@ -1,5 +1,6 @@
-package com.mdt.tacobar;
+package com.mdt.tacobar.security;
 
+import com.mdt.tacobar.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

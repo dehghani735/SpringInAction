@@ -87,6 +87,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.hateoas</groupId>-->
+<!--            <artifactId>spring-hateoas</artifactId>-->
+<!--            <version>0.16.0.RELEASE</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>

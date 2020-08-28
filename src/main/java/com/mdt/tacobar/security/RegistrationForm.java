@@ -1,5 +1,6 @@
-package com.mdt.tacobar;
+package com.mdt.tacobar.security;
 
+import com.mdt.tacobar.User;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

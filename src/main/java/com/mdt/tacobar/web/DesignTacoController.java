@@ -1,5 +1,10 @@
-package com.mdt.tacobar;
+package com.mdt.tacobar.web;
 
+import com.mdt.tacobar.Ingredient;
+import com.mdt.tacobar.Order;
+import com.mdt.tacobar.Taco;
+import com.mdt.tacobar.data.IngredientRepository;
+import com.mdt.tacobar.data.TacoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

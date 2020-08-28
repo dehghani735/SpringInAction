@@ -1,5 +1,6 @@
-package com.mdt.tacobar;
+package com.mdt.tacobar.data;
 
+import com.mdt.tacobar.Ingredient;
 import org.springframework.data.repository.CrudRepository;
 
 public interface IngredientRepository extends CrudRepository<Ingredient, String> {

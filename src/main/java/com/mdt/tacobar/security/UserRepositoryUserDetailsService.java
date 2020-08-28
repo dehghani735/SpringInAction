@@ -1,5 +1,7 @@
-package com.mdt.tacobar;
+package com.mdt.tacobar.security;
 
+import com.mdt.tacobar.User;
+import com.mdt.tacobar.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
