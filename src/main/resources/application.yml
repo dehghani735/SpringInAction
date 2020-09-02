@@ -5,6 +5,10 @@
 #    username: tacodb
 #    password: tacopassword
 #    driver-class-name: com.mysql.jdbc.Driver
-taco:
-  orders:
-    pageSize: 10
+#taco:
+#  orders:
+#    pageSize: 10
+spring:
+  data:
+    rest:
+      base-path: /api

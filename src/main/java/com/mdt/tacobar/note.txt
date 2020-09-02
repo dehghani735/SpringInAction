@@ -1,1 +1,31 @@
 رفتم به صفحه گیت هاب کتاب و اونجا کلی تفاوت وجود داشت بین نسخه JPA و نسخه JDBC که اونا رو گذاشتم درست شد. مهم ترین تفاوتش عدم وجود دو فایل  data.sql و schema.sql بود. و یکی دیگه وجود فایل  application.properties بود. و یکی دیگه توی متد main اومده بود و داده ها رو به جداول insert کرده بود.
+
+// 990609 chapter 6 note
+In case you are using HATEOAS v1.0 and above (Spring boot >= 2.2.0), do note that the classnames have changed. Notably the below classes have been renamed:
+
+ResourceSupport changed to RepresentationModel
+Resource changed to EntityModel
+Resources changed to CollectionModel
+PagedResources changed to PagedModel
+ResourceAssembler changed to RepresentationModelAssembler
+More information available in the official documentation here.
+
+When using Spring boot starter, the below dependency would suffice to include HATEOAS:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-hateoas</artifactId>
+</dependency>
+
+Resource was replaced by EntityModel, and ControllerLinkBuilder was replaced by WebMvcLinkBuilder
+
+
+==============================
+bugs:
+1.
+when I call http://localhost:8080/ingredients, according to page 160 it could output links, but it doesn't
+why?
+
+2.
+
+
