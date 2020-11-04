@@ -15,6 +15,7 @@ public class TacobarApplication {
         Demo demo = new Demo();
         demo.traverse();
 
+        // TODO to run spring, uncomment this
         SpringApplication.run(TacobarApplication.class, args);
     }
 
