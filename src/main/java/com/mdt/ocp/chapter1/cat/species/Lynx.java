@@ -1,6 +1,6 @@
-package com.mdt.ocp.cat.species;
+package com.mdt.ocp.chapter1.cat.species;
 
-import com.mdt.ocp.cat.BigCat;
+import com.mdt.ocp.chapter1.cat.BigCat;
 
 public class Lynx extends BigCat {
 

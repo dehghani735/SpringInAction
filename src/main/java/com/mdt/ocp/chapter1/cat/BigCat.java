@@ -1,4 +1,4 @@
-package com.mdt.ocp.cat;
+package com.mdt.ocp.chapter1.cat;
 
 public class BigCat {
 
