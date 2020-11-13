@@ -287,3 +287,221 @@ import bird.Toucan.Beak; // regular import ok
 ### Summary
 
 read in the book
+
+## Chapter 2: Design Patterns and Principles
+
+- teach you best practices for designing Java classes and writing applications that lead to code that is easier to understand, more maintainable, and that you and other developers can leverage in future projects.
+- Adhering to the design principles and design patterns enables you to create complex class models that smoothly interact with other developers’ applications.
+
+### Designing an Interface
+
+- So, if a new method is to be added in an interface, then its implementation code has to be provided in the class implementing the same interface. To overcome this issue, Java 8 has introduced the concept of **default methods** which allow the interfaces to have methods with implementation without affecting the classes that implement the interface.
+- The default methods were introduced to provide backward compatibility so that existing interfaces can use the lambda expressions without implementing the methods in the implementation class. Default methods are also known as defender methods or virtual extension methods. (https://www.geeksforgeeks.org/default-methods-java/#:~:text=The%20default%20methods%20were%20introduced,methods%20or%20virtual%20extension%20methods.)
+- an **important** note about interfaces: . The compiler automatically adds ```public``` to all interface methods and ```abstract``` to all **non‐static and non‐default** methods, if the developer does not provide them. By contrast, the class implementing the interface **must** provide the proper modifiers.
+- An interface may extend another interface, and in doing so it inherits all of the abstract methods.
+- Remember that an interface cannot extend a class, nor can a class extend an interface.
+- implement multiple interfaces: 
+- construct interfaces that have **neither methods nor class members**, traditionally referred to as **marker interfaces**. E.g. java.io.Serializable
+- نکات بیشتر interface , overriding در OCA
+
+#### Purpose of an Interface
+
+- An interface provides a way for one individual to develop code that uses **another individual’s code**, without having access to the other individual’s **underlying implementation**.
+- Interfaces can facilitate rapid application development by enabling development teams to create applications in parallel, rather than being directly dependent on each other.
+  - For example, two teams can work together to develop a one‐page standard interface at the start of a project. One team then develops code that uses the interfaces while the other team develops code that implements the interface. The development teams can then combine their implementations toward the end of the project, and as long as both teams developed with the same interface, they will be compatible.
+- Mock Objects: which simulates the real object that implements the interface with a simple implementation.
+  
+### Introducing Functional Programming
+
+- Java defines a *functional interface* as an interface that contains a **single abstract method**. Functional interfaces are used as the basis for **lambda expressions** in functional programming.
+- A lambda expression is a block of code that gets passed around, like an **anonymous method**.
+  
+#### Defining a Functional Interface
+
+- @FunctionalInterface Annotation: While it is a good practice to mark a functional interface with the @FunctionalInterface annotation for clarity, it is not required with functional programming. The Java compiler implicitly assumes that any interface that contains exactly one abstract method is a functional interface. Conversely, if a class marked with the @FunctionalInterface annotation contains more than one abstract method, or no abstract methods at all, then the compiler will detect this error and not compile.
+
+#### Implementing Functional Interfaces with Lambdas
+
+- Recall that lambda expressions rely on the notion of **deferred execution**. Deferred execution means that code is **specified now but runs later**.
+- Even though the execution is deferred, the compiler will still validate that the code syntax is properly formed.
+
+##### Understanding Lambda Syntax
+
+these two are the same
+
+```java
+a -> a.canHop()
+(Animal a) -> { return a.canHop(); }
+```
+
+- left side (parameter list): It can be consumed by a **functional interface** whose abstract method has the same number of parameters and compatible data types.
+- right side (body): It can be consumed by a functional interface whose abstract method returns a compatible data type.
+- The parentheses () can be omitted in a lambda expression if there is exactly one input parameter and **the type is not explicitly stated in the expression**. This means that expressions that have zero or more than one input parameter will still require parentheses.
+
+##### Spotting Invalid Lambdas
+
+- {} is needed for multiple line
+- when {} is used, ; must be used
+- return is required if functional interface method returns a value. Alternatively, a return statement is optional when the return type of the method is void.
+- parentheses can be omitted only if there is exactly one parameter and **the data type is not specified**.
+- As mentioned, the data types for the input parameters of a lambda expression are optional. When one parameter has a data type listed, though, all parameters **must** provide a data type.
+- Since Java doesn’t allow us to re‐declare a local variable, the
+following is an issue:
+
+```java
+(a, b) -> { int a = 0; return 5;} // DOES NOT COMPILE
+```
+
+#### Applying the Predicate Interface
+
+- Java has a facility for such an interface for other types called Predicate. It’s in the package java.util.function:
+
+```java
+public interface Predicate<T> {
+  public boolean test(T t);
+}
+```
+
+### Implementing Polymorphism
+
+- *Polymorphism* is the ability of a single interface to support multiple underlying forms.
+- this allows multiple types of objects to be passed to a single method or class.
+- a Java object may be accessed using a reference with the same type as the object, a reference that is a superclass of the object, or a reference that defines an interface that the object implements, either directly or through a superclass. Furthermore, a cast is not required if the object is being reassigned to a supertype or interface of the object.
+- The ability of the Lemur object to be passed as an instance of an interface it implements, HasTail, as well as an instance of one of its superclasses, Primate, is the nature of polymorphism.
+- If you use a variable to refer to an object, then only the methods or variables that are part of the variable’s reference type can be called without an explicit cast.
+
+#### Distinguishing between an Object and a Reference
+
+- Two rules:
+  - The type of the object determines which properties exist within the object in memory.
+  - The type of the reference to the object determines which method and variables are accessible to the Java program.
+- It therefore follows that successfully changing a reference of an object to a new reference type may give you access to new properties of the object, but those properties existed before the reference change occurred.
+
+#### Casting Object References
+
+- We can **reclaim** those references by casting the object back to the specific subclass it came from.
+- Here are some basic rules to keep in mind when casting variables:
+  - Casting an object from a subclass to a superclass doesn’t require an **explicit cast**.
+  - Casting an object from a superclass to a subclass requires an **explicit cast**. => otherwise **compiler** error
+  - The compiler will not allow casts to unrelated types. => otherwise **compiler** error
+  - Even when the code compiles without issue, an **exception** may be thrown at runtime if the object being cast is **not actually an instance of that class**. => otherwise **ClassCastException**
+    - to avoid such a situation, use ```instanceof``` operator
+- When faced with a question on the exam that involves casting and polymorphism, be sure to remember what the instance of the object actually is. Then focus on whether the compiler will allow the object to be referenced with or without explicit casts.
+
+### Understanding Design Principles
+
+- A design principle is an established idea or best practice that facilitates the software design process.
+
+#### Encapsulating Data
+
+- encapsulation is the idea of combining fi elds and methods in a class such that the methods operate on the data, as opposed to the users of the class accessing the fi elds directly.
+- In Java, it is commonly implemented with private instance members that have public methods to retrieve or modify the data, commonly referred to as getters and setters, respectively.
+- The underlying idea of encapsulation is that no actor other than the class itself should have direct access to its data.
+- The class is said to encapsulate the data it contains and prevent anyone from directly accessing it.
+- With encapsulation, a class is able to maintain certain invariants about its internal data.
+- An **invariant** is a property or truth that is maintained even after the data is modified.
+- In “Exceptions and Assertions,” we will describe how to test these class invariants using assertions.
+- First we need to make instance variables ```private```. This way, the class is the only one that can modify the data directly.
+- Then we need to define constructors, getters, and setters that enforce these invariants.
+- Anytime an instance of an Animal object is passed to a method, it can be used without requiring that its invariants be validated.
+- Therefore, it is considered a good design practice always to **encapsulate all variables in a class**, even if **there are no established data rules**, as a way to protect the data when such rules may be added in the **future**.
+
+#### Creating JavaBeans
+
+- **Encapsulation** is so prevalent in Java that there is a standard for creating classes that store data, called **JavaBeans**.
+- A JavaBean is a design principle for encapsulating data in an object in Java.
+- it has some principles => go to book
+
+#### Applying the Is‐a Relationship
+
+use the multi‐inheritance properties of interfaces
+
+#### Applying the Has‐a Relationship
+
+- In object‐oriented design, we often want to test whether an object contains a particular property or value.
+- The has‐a relationship is also known as the object composition test.
+- If a parent has‐a object as a ```protected``` or ```public``` member, then any child of the parent must also have that object as a member. Note that this does not hold true for ```private``` members defined in parent classes, because **private members are not inherited in Java**.
+
+#### Composing Objects
+
+- In object‐oriented design, we refer to object composition as the property of constructing a class using references to other classes in order to reuse the functionality of the other classes.
+- the class contains the other classes in the has‐a sense and may delegate
+methods to the other classes.
+- Object composition should be thought of as an alternate to inheritance and is often used to simulate polymorphic behavior that cannot be achieved via single inheritance.
+- One of the advantages of **object composition** over **inheritance** is that it tends to promote greater **code reuse**.
+- By using object composition, you gain access to other classes and methods that would be difficult to obtain via Java’s single‐inheritance model.
+- Object composition still requires you to explicitly expose the underlying methods and values manually, whereas inheritance includes protected and public members automatically.
+- both object composition and inheritance have their proper place in developing good code, and in many cases it may be difficult to decide which path to choose.
+
+### Working with Design Patterns
+
+- A design pattern is an established general solution to a commonly occurring software development problem.
+- creational patterns. The problem with object creation, though, lies in how you create and manage objects in more complex systems.
+- One thing to keep in mind as you read this section is that under the covers, the ```new``` keyword is still used to create objects in memory.
+- The creational patterns simply apply a level of indirection to object creation by creating the object in some other class, rather than creating the object directly in your application. Level of indirection is a general term for solving a software design problem by conceptually separating the task into multiple levels.
+
+#### Applying the Singleton Pattern
+
+- Problem: How do we create an object in memory only once in an application and have it shared by multiple classes?
+- Motivation: By creating a singleton HayManager object, we centralize the data and remove the need to pass it around the application.
+- Solution The singleton pattern is a creational pattern focused on creating only one instance of an object in memory within an application, sharable by **all classes and threads** within the application. The globally available object created by the singleton pattern is referred to as a singleton.
+- By marking the constructors ```private```, we have implicitly marked the class ```final```. Recall that every class requires at least one constructor, with the default no‐argument constructor being added if none are provided. Furthermore, the first line of any constructor is a call to a parent constructor with the super() command. If all of the constructors are declared ```private``` in the singleton class, then it is impossible to create a subclass with a valid constructor; therefore, the singleton class is effectively ```final```.
+- Singletons are used in situations where we need access to a single set of data throughout an application. For example, application configuration data and reusable data caches are commonly implemented using singletons. Singletons may also be used to **coordinate access to shared resources, such as coordinating write access to a file**.
+
+##### Applying Lazy Instantiation to Singletons
+
+- سه روش ساخت داره سینگلتون
+  - 1 = مستقیم شی بسازیم => در زمان لود کلاس ساخته میشه
+  - 2 = با بلاک استاتیک => در زمان لود کلاس ساخته میشه
+  - 3 = با استفاده از lazy instantiation => در زمان نیاز به آبجکت ساخته میشه
+    - که ممکنه thread safe نباشه. یعنی چند تا همزمان بیان بسازن
+    - باید synchronized اش کنی
+
+##### Creating Unique Singletons
+
+- because we used **lazy instantiation** in the VisitorTicketTracker class, the compiler won’t let us assign the ```final``` modifier to the ```static``` reference.
+- Unfortunately, because we used lazy instantiation in the VisitorTicketTracker class, the compiler won’t let us assign the final modifier to the static reference.
+- Singletons with Double‐Checked Locking: This solution has the problem that **every single call** to this method will require synchronization. In practice, this can be costly and can impact performance. Synchronization is only needed the first time that the object is created.
+
+#### Creating Immutable Objects
+
+- Problem: How do we create read‐only objects that can be shared and used by multiple classes?
+- Solution: The immutable object pattern is a creational pattern based on the idea of creating objects whose state does not change after they are created and can be easily shared across multiple classes. Immutable objects go hand and hand with encapsulation, except that **no setter methods exist that modify the object**. Since the **state** of an immutable object never changes, they are inherently **thread‐safe**.
+- example: String class is immutable
+
+##### Applying an Immutable Strategy
+
+5 rules:
+1. Use a constructor to set all properties of the object.
+2. Mark all of the instance variables ```private``` and ```final``` .
+3. Don’t define any setter methods.
+4. Don’t allow referenced mutable objects to be modified or **accessed** directly
+   - You should never share **references** to a **mutable** object contained within an immutable object
+5. Prevent methods from being **overridden**. 2 ways:
+   - make class final
+   - make the constructor private and apply the factory pattern
+
+- notes: **Collections.unmodifiableList(List list)** see the example in web.
+- Handling **Mutable Objects in the Constructors of Immutable Objects**: It is important when creating immutable objects that any mutable input arguments are copied to the instance instead of being used directly.
+
+#### Using the Builder Pattern
+
+- Problem: How do we create an object that requires numerous values to be set at the time the object is instantiated?
+- Motivation: . Every time we add a parameter, the constructor grows! Users who reference our object would also be required to update their constructor calls each time that the object was modified, resulting in a class that would be difficult to use and maintain. Alternatively, we could add a new constructor each time we add a parameter, but having too many constructors can be quite difficult to manage in practice. One solution is to use setter methods instead of the constructor to configure the object, but this doesn’t work for immutable objects since they can’t be modifi ed after creation. For mutable objects, it could also lead to class invariants being temporarily broken.
+  - The problem of a constructor growing too large actually has a name, referred to as the **telescoping constructor anti‐pattern**.
+  - Design patterns are often written to help prevent anti‐patterns from forming
+- Solution: The builder pattern is a creational pattern in which parameters are passed to a builder object, often through method chaining, and an object is generated with a final build call. It is often used with immutable objects, since immutable objects do not have setter methods and must be created with all of their parameters set, although it can be used with mutable objects as well.
+- using the builder pattern is analogous to taking a **mutable** object and making it **read-only** (immutable).
+- The next thing that you might notice is that all of the **setter methods** return an **instance of the builder object** ```this```.
+- Although we could certainly write our build() method to throw an **exception** if certain required fields are not set. Alternatively, the build() method may also **set default values** for anything the user failed to specify on the builder object.
+- The **primary advantage of the builder pattern** is that, over time, this approach leads to far more **maintainable** code.
+- tight coupling vs loose coupling. توضیح بیشتر توی کتاب
+
+#### Creating Objects with the Factory Pattern
+
+- Problem: How do we write code that creates objects in which the precise type of the object may not be known until runtime?
+- Motivation: complexity of object creation, including selecting which subclass to use, as well as loosely coupling the underlying creation implementation.
+- Solution: **factory method pattern**, is a creational pattern based on the idea of using a factory class to produce instances of objects based on a set of input parameters. It is similar to the builder pattern, although it is focused on supporting **class polymorphism**.
+- Factory patterns are often, although not always, implemented using ```static``` methods that return objects and do not require a pointer to an instance of the factory class.
+- to postfix the class name with the word ```Factory```.
+- Factory Pattern and Default Class Constructors
