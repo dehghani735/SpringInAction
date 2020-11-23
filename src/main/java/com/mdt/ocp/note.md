@@ -504,4 +504,369 @@ methods to the other classes.
 - Solution: **factory method pattern**, is a creational pattern based on the idea of using a factory class to produce instances of objects based on a set of input parameters. It is similar to the builder pattern, although it is focused on supporting **class polymorphism**.
 - Factory patterns are often, although not always, implemented using ```static``` methods that return objects and do not require a pointer to an instance of the factory class.
 - to postfix the class name with the word ```Factory```.
-- Factory Pattern and Default Class Constructors
+- Factory Pattern and Default Class Constructors.
+
+## Chapter 3: Generics and Collections
+
+This includes other lists, sets, queues, and maps.
+
+You’ll learn how to customize searching and sorting using Comparable and Comparator.
+
+We will end with some methods that use functional interfaces, such as forEach() and merge().
+
+### Reviewing OCA Collections
+
+- The *Java Collections Framework* includes classes that implement ```List```, ```Map```, ```Queue```, and ```Set```.
+- an array (like int[]) is not part of the Collections Framework.
+
+#### Array and ArrayList
+
+- An ArrayList is an object that contains other **objects**. An ArrayList **cannot** contain **primitives**. An array is a built-in data structure that contains **other objects or primitives**.
+- Arrays.asList(array): convert array to List.
+- list.toArray(): convert List to array
+- Implementations of ```List``` are allowed to add their own behavior. The implementation used when calling asList() has the added feature of **not being resizable** but honoring all of the other methods in the interface.
+
+#### Searching and Sorting
+
+- Arrays.sort(array)
+- Arrays.binarySearch(array, x): prints the index at which a match is found.
+  - prints one less than the negated index of where the requested value would need to be inserted. (example in code)
+- Collections.sort(list)
+- Collections.binarySearch()
+  - We call sort() and binarySearch() on Collections rather than Collection.
+
+#### Wrapper Classes and Autoboxing
+
+- each **primitive** has a corresponding **wrapper class**.
+- *Autoboxing* automatically converts a **primitive** to the corresponding **wrapper classes** when needed if the **generic type** is specified in the declaration.
+- *Unboxing* automatically converts a wrapper class back to a primitive.
+- Refer to Table 3 .1 Wrapper classes (**Important**)
+- The remove() method is **overloaded**. One signature takes an **int** as the *index* of the element to remove. The other takes an **Object** that should be removed.
+
+#### The Diamond Operator
+
+- in Java 5:
+  - List names = new ArrayList();
+  - So we don't know which data type this list expects
+- <> is called *diamond* operator
+- for readablility of code after java 8
+
+### Working with Generics
+
+- Why do we need **generics**? Well, remember when we said that we had to hope the caller didn’t put something in the list that we didn’t expect?
+- In Java 8, this code ```List names = new ArrayList();``` is called non-generic list.
+- a non-generic list can contain anything.
+- *Generics* can convert runtime error to compile error.
+
+#### Generic Classes
+
+- You can introduce generics into your own classes.
+- The syntax for introducing a generic is to declare a *formal type parameter* in angle brackets.
+- here, T is a **generic type variable**
+
+```java
+public class Crate<T> {
+}
+```
+
+- The generic type T is available anywhere within the Crate class. When you instantiate the class, you tell the compiler what T should be for that particular instance.
+- Naming Conventions for Generics:
+  - E for an element
+  - K for a map key
+  - V for a map value
+  - N for a number
+  - T for a generic data type
+  - S, U, V, and so forth for multiple generic types
+- **Type Erasure**: 
+  - Specifying a generic type allows the compiler to enforce proper use of the generic type. However, this is just for compile time. Behind the scenes, the compiler replaces all references to T in Crate with **Object**. In other words, after the code compiles, your generics are actually just **Object** types.
+
+  ```java
+  public class Crate {
+    private Object contents;
+    public Object emptyCrate() {
+      return contents;
+    }
+    public void packCrate(Object contents) {
+      this.contents = contents;
+    }
+  }
+  ```
+
+  - This means there is only **one class file**. There aren’t different copies for different parameterized types. (Some other languages work that way.)
+  - This process of removing the generics syntax from your code is referred to as type erasure. Type erasure allows your code to be compatible with older versions of Java that do not contain generics.
+  - The compiler adds the relevant casts for your code to work with this type of erased class.
+
+#### Generic Interfaces
+
+- Just like a class, an interface can declare a formal type parameter.
+- 3 ways:
+  - The first is to specify the generic type in the class.
+  - The next way is to create a generic class.
+  - The final way is to not use generics at all.
+
+#### Generic Methods
+
+- It is also possible to declare them on the method level.
+- This is often useful for static methods since they aren’t part of an instance that can declare the type.
+- However, it is also allowed on non-static methods as well.
+
+```java
+public static <T> Crate<T> ship(T t) {
+  System.out.println("Preparing " + t);
+  return new Crate<T>();
+}
+```
+
+- Before the return type, we declare the formal type parameter of <T>.
+- You can call a generic method normally, and the compiler will figure out which one you want.
+
+#### Interacting with Legacy Code
+
+- Legacy code is older code. It is usually code that is in a different style than you would write if you were writing the code today.
+- Collections written without generics are also known as raw collections.
+- Remember that using generics gives us **compile time safety**.
+- At least it does when **all** of the code involved uses generics. When some code uses generics and other code does not, it is easy to get lulled into a false sense of security. lull آرامش یافتن
+- Java knows that raw types are asking for trouble, and it presents a *compiler warning* for this case.
+- The **compiler warning** is Java informing you that you should take a closer look at something.
+- On the exam, you have to identify when a compiler warning will occur.
+- To review, the lesson is to be careful when you see code that doesn’t use generics. Pay special attention to looking for compiler warnings, ClassCastExceptions, and compiler errors.
+
+#### Bounds
+
+- Unbounded Wildcards
+  - ```List<String>``` cannot be assigned to ```List<Object>.```
+  - List<?>
+- Upper-Bounded Wildcards
+  - We’ve established that a generic type can’t just use a subclass:
+  - ```List<? extends Number> list = new ArrayList<Integer>();```
+  - The upper-bounded wildcard says that any class that extends Number or Number itself can be used as the formal parameter type.
+  - type erasure makes Java think that a generic type is an ```Object```.
+  - Something interesting happens when we work with upper bounds or unbounded wildcards. The **list** becomes logically **immutable**. Immutable means that the object cannot be modified. (example in book)
+- Lower-Bounded Wildcards
+
+### Using Lists, Sets, Maps, and Queues
+
+- A *collection* is a group of objects contained in a single object.
+- The *Java Collections Framework* is a set of classes in ```java.util``` for storing collections.
+- four main interfaces in the Java Collections Framework:
+  - List: an ordered collection of elements that allows duplicate entries.
+  - Set: a collection that does not allow duplicate entries.
+  - Queue: a collection that orders its elements in a specific order for processing. A typical queue processes its elements in a first-in, first-out order, but other orderings are possible.
+  - Map: collection that maps keys to values, with no duplicate keys allowed. The elements in a map are key/value pairs.
+
+- Notice that ```Map``` doesn’t implement the Collection interface The reason why maps are treated differently is that they need different methods due to being key/value pairs.
+![Map](map.png)
+
+#### Common Collections Methods
+
+- add(): inserts a new element into the Collection and returns whether it was successful. 
+  - ```boolean add(E element)```
+- remove(): removes a single matching value in the Collection and returns
+whether it was successful.
+  - ```boolean remove(Object object)```
+  - the boolean return value tells us whether a match was removed.
+  - Notice that it removes only one match.
+  - Since calling remove() with an int uses the index, an index that doesn’t exist will throw an exception. IndexOutOfBoundsException.
+- isEmpty() and size(): look at how many elements are in the Collection.
+  - ```boolean isEmpty()```
+  - ```int size()```
+- clear(): provides an easy way to discard all elements of the Collection
+  - ```void clear()```
+- contains(): checks if a certain value is in the Collection.
+  - ```boolean contains(Object object)```
+  - This method calls equals() on each element of the ArrayList to see if there are any matches.
+
+#### Using the List Interface
+
+- The main thing that all List implementations have in common is that they are ordered and allow duplicates.
+
+##### Comparing List Implementations
+
+- An **ArrayList** is like a resizable array. When elements are added, the ArrayList automatically grows. When you aren’t sure which collection to use, use an ArrayList.
+- The main benefit of an ArrayList is that you can look up any element in constant time.
+- Adding or removing an element is slower than accessing an element. This makes an ArrayList a good choice when you are reading more often than (or the same amount as) writing to the ArrayList.
+- Big O notation lets you compare the order of magnitude of performance rather than the exact performance.
+- A **LinkedList** is special because it implements both ```List``` and ```Queue```.
+- It also has additional methods to facilitate adding or removing from the beginning and/or end of the list.
+- The main benefits of a LinkedList are that you can access, add, and remove from the beginning and end of the list in constant time.
+- The tradeoff is that **dealing with an arbitrary index takes linear time**. This makes a LinkedList a good choice when you’ll be using it as **Queue**.
+
+##### Working with List Methods
+
+- The methods in the List interface are for working with indexes.
+
+#### Using the Set Interface
+
+##### Comparing Set Implementations
+
+- A **HashSet** stores its elements in a hash table. This means that it uses the hashCode() method of the objects to retrieve them more efficiently.
+- The main benefit is that adding elements and checking if an element is in the set both have constant time.
+- The tradeoff is that you lose the order in which you inserted the
+elements.
+- A **TreeSet** stores its elements in a sorted tree structure. The main benefit is that the set is always in sorted order. The tradeoff is that adding and checking if an element is present are both O(log n).
+- **TreeSet** implements a special interface called **NavigableSet**, which lets you slice up the collection.
+
+##### Working with Set Methods
+
+- Remember that the equals() method is used to determine equality.
+- The hashCode() method is used to know which bucket to look in so that Java doesn’t have to look through the whole set to find out if an object is there. 
+- The best case is that hash codes are unique, and Java has to call equal () on only **one** object. The worst case is that all implementations return the same hashCode(), and Java has to call equals() on **every** element of the set anyway.
+- in TreeSet: printed out in their **natural sorted order**. یعنی مرتب می کند
+
+##### The NavigableSet Interface
+
+- TreeSet implements the NavigableSet interface.
+
+#### Using the Queue Interface
+
+- Queues are typically used for sorting elements prior to processing them.
+
+##### Comparing Queue Implementations
+
+- You saw **LinkedList** earlier in the List section. In addition to being a list, it is a double-ended queue. A double-ended queue is different from a regular queue in that you can insert and remove elements from both the front and back of the queue.
+- The main benefit of a LinkedList is that it implements both the **List** and **Queue** interfaces. The tradeoff is that it isn’t as efficient as a “pure” queue.
+- An **ArrayDeque** is a “pure” **double-ended** queue.
+  - it stores its elements in a **resizable** array. The main benefit of an ArrayDeque is that it is more efficient than a LinkedList.
+
+##### Working with Queue Methods
+
+- ArrayeDeque methods in the book
+- What if we want to insert an element at the other end, just as we could with a Stack? No problem. We just call the push() method. It works just like offer() except at the other end of the queue.
+- When talking about LIFO (stack), people say push/poll/peek. When talking about FIFO (single-ended queue), people say offer/poll/peek.
+
+#### Map
+
+- You use a map when you want to identify values by a key.
+- For example, when you use the contact list in your phone, you look up “George” rather than looking through each phone number in turn.
+- You do need to know that **TreeMap** is sorted and navigable.
+
+##### Comparing Map Implementations
+
+- A HashMap stores the keys in a hash table. This means that it uses the hashCode() method of the keys to retrieve their values more efficiently.
+- The main benefit is that adding elements and retrieving the element by key both have constant time.
+- The tradeoff is that you lose the order in which you inserted the elements. Most of the time, you aren’t concerned with this in a map anyway. If you were, you could use LinkedHashMap.
+- A TreeMap stores the keys in a sorted tree structure. The main benefit is that the keys are always in sorted order. The tradeoff is that adding and checking if a key is present are both O(log n).
+
+##### Working with Map Methods
+
+- Given that **Map doesn’t extend Collection**, there are more methods specified on the Map interface.
+- Since there are both keys and values, we need generic type parameters for both. The class uses K for key and V for value.
+- Refer to book to see the method lists
+- Java uses the hashCode() of the **key** to determine the order. The order here happens to.
+- in HashMap Java uses the hashCode() of the key to determine the order.
+- The data structures that involve sorting do not allow nulls.
+- which data structures allow nulls?
+  - This means that **TreeSet** cannot contain null elements. It also means that **TreeMap** cannot contain null keys. Null values are OK.
+  - Next comes **ArrayDeque**. You can’t put ```null``` in an ArrayDeque because methods like poll() use null as a special return value to indicate that the collection is empty. Since null has that meaning, Java forbids putting a null in there.
+  - In handy list form, all data structures allow nulls except these:
+    - TreeMap—no null keys
+    - Hashtable—no null keys or values
+    - TreeSet—no null elements
+    - ArrayDeque—no null elements
+
+### Comparator vs. Comparable
+
+- We discussed “order” for the TreeSet and TreeMap classes.
+- **numbers sort before letters and uppercase letters sort before lowercase letters.**
+- You can also sort objects that you create. Java provides an interface called ```Comparable```. If your class implements Comparable, it can be used in these data structures that require comparison.
+- There is also a class called ```Comparator```, which is used to specify that you want to use a different order than the object itself provides.
+
+#### Comparable
+
+```java
+public interface Comparable<T> {
+  public int compareTo(T o);
+}
+```
+
+- There are three rules to know:
+  - The number zero is returned when the current object is equal to the argument to compareTo().
+  - A number less than zero is returned when the current object is smaller than the argument to compareTo().
+  - A number greater than zero is returned when the current object is larger than the argument to compareTo().
+- **compareTo() and equals() Consistency**:
+  - If you write a class that implements Comparable, you introduce new business logic for determining equality. The compareTo() method returns 0 if two objects are equal, while your equals() method returns true if two objects are equal.
+  - A natural ordering that uses compareTo() is said to be consistent with equals if, and only if, x equals(y) is true whenever x.compareTo(y) equals 0.
+  - You are strongly encouraged to make your Comparable classes consistent with equals because not all collection classes behave predictably if the compareTo() and equals() methods are not consistent.
+
+#### Comparator
+
+- Sometimes you want to sort an object that did not implement Comparable, or you want to sort objects in different ways at different times.
+- ```Comparator``` is a **functional interface** since there is only one abstract method to implement.
+- Is Comparable a Functional Interface?
+  - Comparable is also a functional interface since it also has a single abstract method. However, using a lambda for Comparable would be silly. The point of Comparable is to implement it inside the object being compared.
+- Comparison of Comparable and Comparator table **important** refer to book
+- An Easier Way of Comparing Multiple Fields
+  - Java 8 makes this much easier. With the introduction of static and default methods on interfaces, there are now some new helper methods on Comparator.
+
+### Searching and Sorting
+
+- You already know the basics of searching and sorting. You now know a little more about ```Comparable``` and ```Comparator```.
+- The sort method uses the compareTo() method to sort. It expects the objects to be sorted to be Comparable.
+- ```sort()``` and ```binarySearch()``` allow you to pass in a Comparator object when you don’t want to use the natural order.
+
+### Additions in Java 8
+
+#### Using Method References
+
+- *Method references* are a way to make the code shorter by reducing some of the code that can be inferred and simply mentioning the name of the method.
+- Like lambdas, it takes time to get used to the new syntax.
+- The :: operator tells Java to pass the parameters automatically into compareByWeight.
+- DuckHelper::compareByWeight returns a functional interface and not an ```int```. Remember that :: is like **lambdas**, and it is typically used for **deferred execution**.
+- There are four formats for method references:
+  - Static methods
+  - Instance methods on a particular instance
+  - Instance methods on an instance to be determined at runtime
+  - Constructors
+- ```Predicate``` is a functional interface that takes a single parameter of any type and returns a boolean. 
+- Another functional interface is ```Consumer```, which takes a single parameter of any type and has a void return type. 
+- Finally, ```Supplier``` doesn’t take any parameters and returns any type.
+- A *constructor reference* is a special type of method reference that uses ```new``` instead of a method, and it creates a new object.
+
+#### Removing Conditionally
+
+- Java 8 introduces a new method called ```removeIf```.
+- Before this, we had the ability to remove a specified object from a collection or a specified index from a list. Now we can specify what should be deleted using a block of code.
+- ```boolean removeIf(Predicate<? super E> filter)```
+- It uses a Predicate, which is a lambda that takes one parameter and returns a boolean.
+- Since **lambdas** use **deferred execution**, this allows specifying logic to run when that point in the code is reached.
+- The most important thing to remember about ```removeIf``` is that it is one of two methods that are **on a collection** and it **takes a lambda parameter**.
+
+#### Updating All Elements
+
+- Another new method introduced on Lists is ```replaceAll```. Java 8 lets you pass a lambda expression and have it applied to each element in the list.
+- ```void replaceAll(UnaryOperator<E> o)```
+- It uses a ```UnaryOperator```, which takes one parameter and returns a value of the same type.
+
+#### Looping through a Collection
+
+- cats.forEach(c -> System.out.println(c));
+- we’ve used a Consumer, which takes a single parameter and doesn’t return anything.
+
+#### Using New Java 8 Map APIs
+
+- Java 8 added a number of new methods on the Map interface.
+- Only merge() is listed in the OCP objectives. Two others, computeIfPresent() and computeIfAbsent(), are added in the upgrade exam objectives.
+- https://www.selikoff.net/java-ocp-8-programmer-ii-study-guide/
+- Sometimes you need to **update** the value for a specific key in the map.
+- putIfAbsent(), that you can call if you want to set a value in the map, but this method skips it if the value is already set to a non-null value.
+
+##### merge
+
+- If the specified key is not already associated with a value or the value is null, it associates the key with the given value.
+- Otherwise, it replaces the value with the results of the given remapping function. If the result of the remapping function is null, it removes the result.
+- uses a functional interface called a BiFunction.
+- The mapping function is used only when there are two actual values to decide between.
+- The final thing to know about merge() is what happens when the mapping function is called and returns ```null```. The key is removed from the map when this happens.
+
+##### computeIfPresent and computeIfAbsent
+
+- computeIfPresent() calls the BiFunction if the requested key is found.
+- The function interface is a BiFunction again. However, this time the **key and value** are passed rather than two values.
+- For computeIfAbsent(), the **functional interface** runs only when the key isn’t present or is ```null```.
+- Since there is no value already in the map, a ```Function``` is used instead of a BiFunction. **Only the key** is passed as input.
+  - ```Function<String, Integer> mapper4 = (k) -> 1;```
+- If the mapping function is called and returns null, the key is removed from the map for computeIfPresent(). For computeIfAbsent(), the key is never added to the map in the first place.
+- See The basics of the merge and compute methods table in the book
+
+## Chapter 4: Functional Programming
+
