@@ -1,4 +1,4 @@
-package com.mdt.ocp.chapter3.SarchingAndSorting;
+package com.mdt.ocp.chapter3.SearchingAndSorting;
 
 import java.util.*;
 
