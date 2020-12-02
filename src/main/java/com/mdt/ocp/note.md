@@ -477,7 +477,7 @@ use the multi‐inheritance properties of interfaces
 5 rules:
 
 1. Use a constructor to set all properties of the object.
-2. Mark all of the instance variables `private` and `final` .
+2. Mark all of the instance variables `private` and `final`.
 3. Don’t define any setter methods.
 4. Don’t allow referenced mutable objects to be modified or **accessed** directly
    - You should never share **references** to a **mutable** object contained within an immutable object
@@ -1365,3 +1365,132 @@ abstract
 
 - very important go to book
 
+## Chapter 1: Dates, Strings, and Localization
+
+### Working with Dates and Times
+
+- You need an import to work with the date and time classes. java.time package
+- In the following sections, we’ll look at creating, manipulating, and formatting dates and times.
+
+#### Creating Dates and Times
+
+- When working with dates and times, the first thing to do is to decide how much information you need. The exam gives you four choices:
+  - LocalDate: Contains just a date—no time and no time zone.
+  - LocalTime: Contains just a time—no date and no time zone.
+  - LocalDateTime: Contains both a date and time but no time zone.
+  - ZonedDateTime: Contains a date, time, and time zone
+
+- Oracle recommends avoiding time zones unless you really need them.
+- you obtain date and time instances using a `static` method.
+- Each of the four classes has a static method called now(), which gives the current date and time.
+- Java uses T to separate the date and time when converting LocalDateTime to a String.
+- Greenwich Mean Time is a time zone in Europe that is used as time zone zero when discussing offsets.
+- You might have also heard of Coordinated Universal Time , which is a time zone standard. It is abbreviated as a UTC, as a compromise between the English and French names.
+- UTC uses the same time zone zero as GMT.
+- The time zone offset can be listed in different ways: +02:00, GMT+2, and UTC+2 all mean the same thing.
+- Just remember that the **month comes before the date.**
+- let’s look at other specific dates and times.
+
+```java
+public static LocalDate of(int year, int month, int dayOfMonth)
+public static LocalDate of(int year, Month month, int dayOfMonth)
+```
+
+- Month is an enum. Remember that an **enum is not an int** and cannot be compared to one.
+- Up to now, we’ve been continually telling you that Java counts starting with 0. Well, months are an exception.
+- For months in the new date and time methods, Java counts starting from 1, just as we humans do.
+- When creating a time, you can choose how detailed you want to be. You can specify just the hour and minute, or you can include the number of seconds. You can even include nanoseconds if you want to be very precise.
+
+```java
+public static LocalTime of(int hour, int minute)
+public static LocalTime of(int hour, int minute, int second)
+public static LocalTime of(int hour, int minute, int second, int nanos)
+```
+
+- In order to create a ZonedDateTime, we first need to get the desired time zone.
+
+```java
+public static ZonedDateTime of(int year, int month,
+int dayOfMonth, int hour, int minute, int second, int nanos, ZoneId zone)
+public static ZonedDateTime of(LocalDate date, LocalTime time, ZoneId zone)
+public static ZonedDateTime of(LocalDateTime dateTime, ZoneId zone)
+```
+
+- Finding a Time Zone
+  - using functional programming
+
+  ```java
+  ZoneId.getAvailableZoneIds().stream()
+  .filter(z -> z.contains("US") || z.contains("America"))
+  .sorted().forEach(System.out::println);
+  ```
+
+- Did you notice that we did not use a constructor in any of the examples? The date and time classes have `private` constructors to **force** you to use the factory’s `static` methods.
+- Another trick is what happens when you pass invalid numbers to of() => DateTimeException
+
+#### Manipulating Dates and Times
+
+- Adding to a date is easy. The **date and time** classes are **immutable**.
+- this means that we need to remember to assign the results of these methods to a **reference variable** so that they are not lost.
+- There are also nice, easy methods to go backward in time.
+- Whenever you see **immutable types**, pay attention to make sure that the return value of a method call isn’t ignored.
+
+#### Working with Periods
+
+- Converting to a long:
+  - LocalDate and LocalDateTime have a method to convert themselves into long equivalents in relation to January 1, 1970.
+  - This special date is called the **epoch**.
+  - **LocalDate** has toEpochDay(), which is the number of days since January 1, 1970.
+  - **LocalDateTime** and **ZonedDateTime** have toEpochSecond(), which is the  number of seconds since January 1, 1970.
+  - **LocalTime** does not have an epoch method. Since it represents a time that can occur on any date, it doesn’t make sense to compare it to 1970.
+  - you may be wondering if this special January 1, 1970, is in a specific time zone. The answer is yes. This special time refers to when it was January 1, 1970, in GMT (Greenwich mean time). Greenwich is in England, and GMT does not participate in daylight savings time.
+
+- Java has a `Period` class that we can pass in.
+- There are five ways to create a Period class:
+  - Period annually = Period.ofYears(1); // every 1 year
+  - Period quarterly = Period.ofMonths(3); // every 3 months
+  - Period everyThreeWeeks = Period.ofWeeks(3); // every 3 weeks
+  - Period everyOtherDay = Period.ofDays(2); // every 2 days
+  - Period everyYearAndAWeek = Period.of(1, 0, 7); // every year and 7 days
+- You cannot **chain** methods when creating a Period. Only the last method is used because the Period of___ methods are `static` methods.
+- The of() method takes only years, months, and days. The ability to use another factory method to pass weeks is merely a convenience.
+- Period format:
+  - P1Y2M3D
+- If any of these are zero, they are omitted.
+- Remember that week is not one of the units a Period stores. Therefore, a week is converted to 7 days.
+- The last thing to know about Period is what objects it can be used with.
+
+#### Working with Durations
+
+- You’ve probably noticed by now that a Period is a **day** or more of **time**.
+- There is also Duration, which is intended for smaller units of time.
+- For Duration, you can specify the number of days, hours, minutes, seconds, or nanoseconds.
+- Duration roughly works the same way as Period, except it is used with objects that have time.
+- Remember that a Period is output beginning with a P. Duration is output beginning with PT, which you can think of as a period of time.
+- A Duration is stored in hours, minutes, and seconds. The number of seconds includes fractional seconds.
+- Duration doesn’t have a constructor that takes multiple units like Period does. If you want something to happen every hour and a half, you would specify 90 minutes.
+- Duration includes another more generic factory method. It takes a number and a TemporalUnit. The idea is, say, something like “5 seconds.” However, TemporalUnit is an interface. At the moment, there is only one implementation named ChronoUnit.
+  - ChronoUnit.HALF_DAYS represent 12 hours.
+- ChronoUnit for Differences:
+  - ChronoUnit is a great way to determine how far apart two Temporal values are. Temporal includes LocalDate, LocalTime, and so on.
+- Using a Duration works the same way as using a Period.
+- Remember that `Period` and `Duration` are **not equivalent**. This example shows a Period and Duration of the same length:
+- Since we are working with a `LocalDate`, we are required to use `Period`. `Duration` has **time units in it**, even if we don’t see them and they are meant **only** for objects with **time**.
+
+#### Working with Instants
+
+- The `Instant` class represents a specific moment in time in the **GMT time zone**.
+- If you have a `ZonedDateTime`, you can turn it into an `Instant`.
+- The ZonedDateTime includes a time zone. The Instant gets rid of the time zone and turns it into an Instant of time in GMT.
+- You cannot convert a `LocalDateTime` to an `Instant`. **Remember that an Instant is a point in time**. A `LocalDateTime` does not contain a time zone, and it is therefore not universally recognized around the world as the same moment in time.
+- If you have the number of seconds since 1970, you can also create an Instant that way.
+
+#### Accounting for Daylight Savings Time
+
+- Some countries observe daylight savings time.
+- his is where the clocks are adjusted by an hour twice a year to make better use of the sunlight.
+- Not all countries participate, and those that do use different weekends for the change.
+
+**Chapter 5 not completed** 990912 I am not in the mood to complete this chapter, maybe another day
+
+## Chapter 6: Exception
