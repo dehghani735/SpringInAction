@@ -1493,4 +1493,324 @@ public static ZonedDateTime of(LocalDateTime dateTime, ZoneId zone)
 
 **Chapter 5 not completed** 990912 I am not in the mood to complete this chapter, maybe another day
 
-## Chapter 6: Exception
+## Chapter 6: Exceptions and Assertions
+
+### Reviewing Exceptions
+
+- Reason of program failure
+  - Your program tries to read a file that doesn’t exist.
+  - Your program tries to access a database, but the network connection to the database is
+unavailable.
+  - You made a coding mistake and wrote an invalid SQL statement in your JDBC code.
+  - You made a coding mistake and used the wrong format specifiers when using DateTimeFormatter.
+- As you can see, some of these are coding mistakes. Others are completely beyond your control. Your program can’t help it if the network connection goes down. What it can do is deal with the situation.
+
+#### Exceptions Terminology
+
+- An exception is Java’s way of saying, “I give up. I don’t know what to do right now. You deal with it.”
+
+#### Categories of Exceptions
+
+- Remember that a _runtime exception_, or **unchecked** exception, may be caught, but it is **not required** that it be caught.
+- After all, if you had to check for NullPointerException, every piece of code that you wrote would need to deal with it.
+- A _checked exception_ is any class that extends `Exception` but is not a runtime exception.
+- Checked exceptions must follow the _handle_ or _declare_ rule where they are either caught or thrown to the caller.
+- An error is fatal and should not be caught by the program. While it is legal to catch an error, it is not a good practice
+
+![Exceptions](Exceptions.png)
+
+![typeException](typeException.png)
+
+#### Exceptions on the OCP
+
+- java.io.IOException is an example of a **checked exception**.
+- On the OCP, you need to know more exceptions. The objectives cover a number of APIs that throw a mix of checked and unchecked exceptions.
+- Just remember that **IO**, **parsing**, and **SQL** exceptions are _checked_.
+- Anything else is a runtime exception unless the exam states otherwise.
+
+#### Try Statement
+
+- The try statement consists of a **mandatory** try clause.
+- It can include one or more catch clauses to handle the exceptions that are thrown.
+- It can also include a finally clause, which runs regardless of whether an exception is thrown.
+
+- Two rules:
+  - Java checks the catch blocks in the order in which they appear. It is illegal to declare a subclass exception in a catch block that is lower down in the list than a superclass exception because it will be unreachable code.
+  - Java will not allow you to declare a catch block for a checked exception type that cannot potentially be thrown by the try clause body. This is again to avoid unreachable code.
+
+#### Throw vs. Throws
+
+- Remember that throw means an exception is actually being thrown and throws indicate that the method merely has the potential to throw that exception.
+
+```java
+10: public String getDataFromDatabase() throws SQLException {
+11:  throw new UnsupportedOperationException();
+}
+```
+
+- Line 10 declares that the method might or might not throw a SQLException . Since this is a checked exception, the caller needs to handle or declare it. Line 11 actually does throw an UnsupportedOperationException . Since this is a runtime exception, it does not need to be declared on line 10.
+
+### Creating Custom Exceptions
+
+- When creating your own exception, you need to decide whether it should be a checked or unchecked exception.
+- While you can extend any exception class, it is most common to extend Exception (for checked) or RuntimeException (for unchecked).
+- the three most common constructors defined by the Exception class:
+
+```java
+public class CannotSwimException extends Exception {
+  public CannotSwimException() {
+    super();
+  }
+  public CannotSwimException(Exception e) {
+    super(e);
+  }
+  public CannotSwimException(String message) {
+    super(message);
+  }
+}
+```
+
+- The first constructor is the default constructor with no parameters. The second constructor shows how to wrap another exception inside yours. The third constructor shows how to pass a custom error message.
+- Using a different constructor allows you to provide more information about what went wrong. We would get output like this if we wrote a main method with the line throw new CannotSwimException(); : 
+  - Exception in thread "main" CannotSwimException at CannotSwimException.main(CannotSwimException.java:18)
+- throw new CannotSwimException(new RuntimeException());
+- throw new CannotSwimException("broken fin");
+- You can also print the stack trace on your own:
+
+```java
+try {
+  throw new CannotSwimException();
+} catch (CannotSwimException e) {
+  e.printStackTrace();
+}
+```
+
+### Using Multi-catch
+
+- When something goes wrong in a program, it is common to log the error and convert it to a different exception type.
+- In Java 7, they introduced the ability to catch multiple exceptions in the same catch block, also known as multi-catch.
+
+```java
+try {
+//protected code
+} catch(Exception1 | Exception2 e) {
+//exception handler
+}
+```
+
+- Remember that the exceptions can be listed in any order within the catch clause. However, the variable name must appear only once and at the end.
+
+```java
+catch(Exception1 e | Exception2 e | Exception3 e) // DOES NOT COMPILE
+catch(Exception1 e1 | Exception2 e2 | Exception3 e3) // DOES NOT COMPILE
+```
+
+- Java intends multi-catch to be used for exceptions that aren’t related and it prevents you from specifying redundant types in a multi-catch.
+- FileNotFoundException is a subclass of IOException. Specifying it in the multi-catch is redundant.
+- **Multi-catch** Is **Effectively Final**:
+
+```java
+try {
+  // do some work
+} catch(RuntimeException e) {
+  e = new RuntimeException();
+}
+```
+
+- but, the following code does not compile. Java forbids reassigning the exception variable in a multi-catch situation.
+
+```java
+try {
+  throw new IOException();
+} catch(IOException | RuntimeException e) {
+  e = new RuntimeException(); // DOES NOT COMPILE
+}
+```
+
+- only **checked exceptions** that have the **potential** to be thrown are **allowed** to **be caught**.
+
+### Using Try-With-Resources
+
+- Multi-catch allows you to write code without duplication.
+- nother problem arises with duplication in `finally` blocks.
+- it is important to close resources when you are finished with them.
+- Using try-with-resources There is no longer code just to close resources. The new _try-with-resources_ statement automatically closes all resources opened in the try clause. This feature is also known as _automatic resource management_, because Java automatically takes care of the closing.
+- Ensuring Resources Are Closed: we sometimes come across code that appears to guarantee resource closure, but in fact it does not. 
+
+  ```java
+  } finally {
+    if (in != null) in.close();
+    if (out != null) out.close();
+  }
+  ```
+
+  - above code leads to a **resource leak**. If in.close() throws an exception, then out.close() will never be executed, leaving us with an unclosed resource!
+
+  ```java
+  } finally {
+    try {
+      in.close();
+    } catch (IOException e) {}
+    try {
+      out.close();
+    } catch (IOException e) {}
+  }
+  ```
+
+  - Luckily, try-with-resources avoids the need to keep writing code like this by hand!
+
+#### Try-With-Resources Basics
+
+- You might have noticed that there is no finally block in the try-with-resources code.
+- <span style="color:green">you learned that a **try** statement **must** have **one or more catch** blocks _or_ **a finally block**.</span>.
+- This is still true. The finally clause exists **implicitly**. You just don’t have to type it.
+- Remember that only a try-with-resources statement is permitted to omit both the catch and finally blocks. A traditional try statement **must** have **either or both**.
+- a try-with-resources statement is still allowed to have catch and/ or finally blocks. They are run in addition to the implicit one. The implicit finally block runs before any programmer-coded ones.
+- The resources created in the try clause are only in scope within the try block. This is another way to remember that the implicit finally runs before any catch finally blocks that you code yourself. The implicit close has run already, and the resource is no longer available.
+- In a traditional try statement, the variable has to be declared before the try statement so that both the try and finally blocks can access it, which has the unpleasant side effect of making the variable in scope for the rest of the method, just inviting you to call it by accident.
+
+#### AutoCloseable
+
+- You can’t just put any random class in a try-with-resources statement. Java commits to closing automatically any resources opened in the try clause.
+- Java doesn’t allow this. It has no idea how to close a Turkey. Java informs us of this fact with a compiler error.
+- In order for a class to be created in the try clause, Java requires it to implement an interface called `AutoCloseable`.
+  - void close() throws Exception
+- an overriding method is allowed to declare **more specific** exceptions than the parent or **even none at all**. By declaring Exception, the AutoCloseable interface is saying that implementers may throw **any exceptions they choose**.
+- Java strongly recommends that close() not actually throw Exception. It is better to throw a more specific exception. Java also recommends to make the close() method _idempotent_. Idempotent means that the method can called be multiple times without any side effects or undesirable behavior on subsequent runs.
+  - **specific** and **idempotent**
+- AutoCloseable vs. Closeable: **Closeable** is before java 7
+  - Closeable restricts the type of exception thrown to `IOException`.
+  - Closeable requires implementations to be *idempotent*.
+
+#### Suppressed Exceptions
+
+- What happens if the close() method throws an exception?
+- We already know that the resources are closed before any programmer-coded catch blocks are run.
+- This means that we can catch the exception thrown by close() if we wish. Alternatively, we can allow the caller to deal with it. Just like a regular exception, **checked** exceptions must be **handled** or **declared**. **Runtime** exceptions **do not need to be acknowledged**.
+- What happens if the try block also throws an exception? Java 7 added a way to accumulate exceptions. When multiple exceptions are thrown, all but the first are called suppressed exceptions. The idea is that Java treats the first exception as the primary one and tacks on any that come up while automatically closing.
+- Keep in mind that the `catch` block looks for matches on the **primary**  exception.
+- Java remembers the **suppressed exceptions** that go with a **primary** exception even if we don’t handle them in the code.
+- <span style="color:green">Java closes resources in the **reverse** order from which it created them.</span>
+- Since it is the first exception to occur, it becomes the primary exception. Then t1 is closed. Since an exception has already been thrown, this one becomes a suppressed exception.
+- Remember that Java needs to be backward compatible. try and finally were both allowed to throw an exception long before Java 7. When this happened, the **finally block took precedence**, and the previous exception is **lost**.
+
+#### Putting It Together
+
+- You’ve learned two new rules for the order in which code runs in a try-with-resources statement:
+  - Resources are closed after the try clause ends and before any catch/finally clauses.
+  - Resources are closed in the reverse order from which they were created.
+
+### Rethrowing Exceptions
+
+- It is a common pattern to **log** and then **throw** **the same exception.
+
+```java
+public void parseData() throws SQLException, DateTimeParseException {}
+```
+
+- When calling this method, we need to **handle** or **declare** those two exception types.
+
+```java
+public void multiCatch() throws SQLException, DateTimeParseException {
+  try {
+    parseData();
+  } catch (SQLException | DateTimeParseException e) {
+    System.err.println(e);
+    throw e;
+  } 
+}
+```
+
+- The list of exceptions in the catch block and the list of exceptions in the method signature of multiCatch() are the same. This is duplication.
+- Since there were a number of changes in Java 7, the language designers decided to solve this problem at the same time. They made it legal to write Exception in the catch block but really only a limited set of exceptions.
+
+```java
+public void rethrowing() throws SQLException, DateTimeParseException {
+  try {
+    parseData();
+  } catch (Exception e) {
+    System.err.println(e);
+    throw e;
+  } }
+```
+
+- This time, Java interprets Exception as the possible exceptions that can be thrown in the method. As long as all of these checked exceptions are handled or declared, Java is happy.
+- Notice how we said that the two examples are similar; that is, they are not the same. What happens if parseData() throws a NullPointerException? In the multi-catch version, the exception will not be caught in the catch block and will not be logged to System.err. In the rethrowing example, it will be caught, logged, and rethrown.
+
+### Working with Assertions
+
+- An assertion is a Boolean expression that you place at a point in your code where you expect something to be true.
+- The English defi nition of the word assert is to state that something is true, which means that you assert that something is true.
+- An assert statement contains this statement along with an optional String message.
+
+#### The assert Statement
+
+```java
+assert boolean_expression;
+assert boolean_expression: error_message;
+```
+
+- The boolean expression must evaluate to true or false.
+- The optional error message is a String used as the message for the AssertionError that is thrown.
+- An assertion throws an `AssertionError` if it is `false`.
+- Since programs aren’t supposed to catch an `Error`, this means that **assertion failures** are **fatal** and **end the program**.
+- The three possible outcomes of an assert statement are as follows:
+  - If assertions are disabled, Java skips the assertion and goes on in the code.
+  - If assertions are enabled and the boolean expression is true , then our assertion has been validated and nothing happens. The program continues to execute in its normal manner.
+  - If assertions are enabled and the boolean expression is false , then our assertion is invalid and a java.lang.AssertionError is thrown.
+- Presuming assertions are enabled, an assertion is a shorter/better way of writing the following:
+  - if (!boolean_expression) throw new AssertionError();
+- Remember when we said a developer shouldn’t be throwing an `Error`? With the assert syntax, you aren’t. **Java** is throwing the Error.
+- `java –ea Assertions` command is for enabling assertion.
+
+#### Enabling Assertions
+
+- By default, assert statements are ignored by the JVM at runtime.
+- To enable assertions, use the -enableassertions flag on the command line:
+
+```java
+java -enableassertions Rectangle
+```
+
+- You can also use the shortcut -ea flag:
+
+```java
+java -ea Rectangle
+```
+
+- Using the -enableassertions or -ea flag without any arguments enables assertions in all classes except system classes.
+- System classes are classes that are part of the Java runtime.
+- You can also enable assertions for a specific class or package:
+
+```java
+java -ea:com.wiley.demos... my.programs.Main
+```
+
+- The three dots means any class in the specifi ed package or subpackages.
+- You can disable assertions using the -disableassertions (or -da ) fl ag for a specific class or package that was previously enabled.
+- Enabling assertions is an important aspect of using them, because if assertions are not enabled, assert statements are ignored at runtime.
+
+#### Using Assertions
+
+- use assertions for these reasons:
+  - Internal Invariants
+  - Class Invariants
+  - Control Flow Invariants
+  - Preconditions
+  - Post Conditions
+- Assertions Should Not Alter Outcomes:
+  - Because assertions can, should, and probably will be turned off in a production environment, your assertions should not contain any business logic that affects the outcome of your code.
+- Validating Method Parameters:
+  - Do not use assertions to check for valid arguments passed in to a method. Use an IllegalArgumentException instead.
+  - Remember, assertions are for situations where you are certain of something and you just want to verify it.
+
+### Summary
+
+- Subclasses of java.lang.Error are exceptions that a program should not attempt to handle.
+- Subclasses of java.lang.RuntimeException are runtime (unchecked) exceptions.
+- Subclasses of java.lang.Exception that do not subclass java.lang.RuntimeException are checked exceptions.
+- Java requires checked exceptions to be handled or declared.
+- If a try statement has multiple catch blocks, at most one catch block can run. Java looks for an exception that can be caught by each catch block in the order in which they appear, and the first match is run. Then execution continues after the try statement to the finally block if present. If both `catch` and `finally` throw an exception, the one from `finally` gets thrown.
+
+## Concurrency
+
