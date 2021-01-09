@@ -108,6 +108,7 @@ public class Test {
         s5.distinct().forEach(System.out::print); // duckgoose
         System.out.println("===");
         // skip and limit
+        System.out.println("skip and limit");
         Stream<Integer> s6 = Stream.iterate(1, n -> n + 1);
         s6.skip(5).limit(2).forEach(System.out::print); // 67
         System.out.println("===");

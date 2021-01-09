@@ -13,5 +13,7 @@ public class Test {
 //        birds.add(new Sparrow());     // DOES NOT COMPILE
 //        birds.add(new Bird());        // DOES NOT COMPILE
 
+//        Number
+//        Integer
     }
 }

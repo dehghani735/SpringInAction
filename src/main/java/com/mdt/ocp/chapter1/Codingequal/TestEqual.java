@@ -8,5 +8,7 @@ public class TestEqual {
         StringBuilder sb1 = new StringBuilder("lion");
         StringBuilder sb2 = new StringBuilder("lion");
         System.out.println(sb1.equals(sb2));
+
+//        String
     }
 }
