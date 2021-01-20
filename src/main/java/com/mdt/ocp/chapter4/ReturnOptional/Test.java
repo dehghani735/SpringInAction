@@ -42,5 +42,22 @@ public class Test {
         System.out.println(opt4.orElse(Double.NaN));
         System.out.println(opt4.orElseGet(() -> Math.random()));
 //        System.out.println(opt4.orElseThrow(() -> new IllegalStateException()));
+
+
+        Optional<String> s = Optional.of("test");
+        System.out.println(Optional.of("TEST") + " " + s.map(String::toUpperCase));
+
+        //
+        var x1 = Optional.of(Optional.of("STRING"));
+        var x2 = Optional.of("string").map(s1 -> Optional.of("STRING"));
+        System.out.println(x1);
+        System.out.println(x2);
+
+        var y1 = Optional.of("STRING");
+        var y2 = Optional
+                .of("string")
+                .flatMap(s3 -> Optional.of("STRING"));
+        System.out.println(y1);
+        System.out.println(y2);
     }
 }
