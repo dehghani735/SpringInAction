@@ -14,7 +14,7 @@ public class MyDateFormatter {
 
     private SimpleDateFormat getThreadLocalSimpleDateFormat() {
         SimpleDateFormat simpleDateFormat = simpleDateFormatThreadLocal.get();
-        if(simpleDateFormat == null) {
+        if (simpleDateFormat == null) {
             simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             simpleDateFormatThreadLocal.set(simpleDateFormat);
         }

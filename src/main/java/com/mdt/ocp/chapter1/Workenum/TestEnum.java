@@ -11,7 +11,7 @@ public class TestEnum {
         System.out.println(Season.SUMMER);
         System.out.println(s == Season.SUMMER);
 
-        for (Season season: Season.values()){
+        for (Season season : Season.values()) {
             System.out.println(season.name() + " " + season.ordinal());
         }
 //        if (Season.SUMMER == 2) {}  does not compile

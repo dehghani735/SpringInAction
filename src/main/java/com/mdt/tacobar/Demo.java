@@ -6,8 +6,8 @@ public class Demo {
         SATURDAY, SUNDAY
     }
 
-    public void traverse(){
-        for (Week week : Week.values()){
+    public void traverse() {
+        for (Week week : Week.values()) {
             System.out.println(week.name() + " , " + week.ordinal());
         }
     }

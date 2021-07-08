@@ -3,6 +3,7 @@ package com.mdt.ocp.chapter3.ComparableAndComparator;
 public class Animal implements Comparable<Animal> {
 
     private int id;
+
     public int compareTo(Animal a) {
         return id - a.id; // leading to sort in ascending order
     }

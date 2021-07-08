@@ -4,7 +4,8 @@ public class HayStorage {
     private int quantity = 0;
 
     // private constructor
-    private HayStorage() {}
+    private HayStorage() {
+    }
 
     private static final HayStorage instance = new HayStorage();
 

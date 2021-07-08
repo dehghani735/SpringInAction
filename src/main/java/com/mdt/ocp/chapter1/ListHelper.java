@@ -2,7 +2,8 @@ package com.mdt.ocp.chapter1;
 
 import java.util.ArrayList;
 import java.util.List;
-import static java.util.Collections.*;
+
+import static java.util.Collections.sort;
 
 public class ListHelper {
 

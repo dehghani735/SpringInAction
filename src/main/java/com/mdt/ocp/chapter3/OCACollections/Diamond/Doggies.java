@@ -19,7 +19,7 @@ class Doggies {
     public static void main(String[] args) {
 
         HashMap<String, HashMap<String, String>> map1 =
-                new HashMap<String, HashMap<String, String>>();
+            new HashMap<String, HashMap<String, String>>();
 
         HashMap<String, HashMap<String, String>> map2 = new HashMap<>();
 

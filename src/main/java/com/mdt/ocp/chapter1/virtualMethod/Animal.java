@@ -19,21 +19,33 @@ abstract class Animal {
 }
 
 class Cow extends Animal {
-    public void feed() { addHay(); }
-    private void addHay() {}
+    public void feed() {
+        addHay();
+    }
+
+    private void addHay() {
+    }
 }
 
 class Bird extends Animal {
-    public void feed() { addSeed(); }
-    private void addSeed() {}
+    public void feed() {
+        addSeed();
+    }
+
+    private void addSeed() {
+    }
 }
 
 class Lion extends Animal {
 
     public String name = "Leo";
 
-    public void feed() { addMeat(); }
-    private void addMeat() {}
+    public void feed() {
+        addMeat();
+    }
+
+    private void addMeat() {
+    }
 
     public void play() {
         System.out.println("toss in meat");

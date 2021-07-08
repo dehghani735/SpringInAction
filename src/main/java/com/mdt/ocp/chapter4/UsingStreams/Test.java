@@ -85,7 +85,7 @@ public class Test {
         // collect with different accumulator and combiner
         Stream<String> stream4 = Stream.of("w", "o", "l", "f");
         TreeSet<String> set = stream4.collect(TreeSet::new, TreeSet::add,
-                TreeSet::addAll);
+            TreeSet::addAll);
         System.out.println(set); // [f, l, o, w]
         System.out.println("===");
         // collect with Collectors
@@ -132,12 +132,12 @@ public class Test {
         // sorted with Comparator
         Stream<String> s9 = Stream.of("brown bear-", "grizzly-");
         s9.sorted(Comparator.reverseOrder()) // tricky note here, we have to use method not method reference.
-                .forEach(System.out::print); // grizzly-brown bear-
+            .forEach(System.out::print); // grizzly-brown bear-
         System.out.println("===");
         // peek()
         Stream<String> stream7 = Stream.of("black bear", "brown bear", "grizzly");
         long count = stream7.filter(s10 -> s10.startsWith("g"))
-                .peek(System.out::println).count(); // grizzly
+            .peek(System.out::println).count(); // grizzly
         System.out.println(count); // 1
         System.out.println("===");
         // danger with peek
@@ -158,7 +158,7 @@ public class Test {
         //
         List<String> list3 = Arrays.asList("Toby", "Anna", "Leroy", "Alex");
         list3.stream().filter(n -> n.length() == 4).sorted()
-                .limit(2).forEach(System.out::println);
+            .limit(2).forEach(System.out::println);
 
     }
 }

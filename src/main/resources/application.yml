@@ -9,6 +9,6 @@
 #  orders:
 #    pageSize: 10
 spring:
-  data:
-    rest:
-      base-path: /api
+    data:
+        rest:
+            base-path: /api

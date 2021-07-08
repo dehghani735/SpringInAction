@@ -3,7 +3,6 @@ package com.mdt.ocp.Additionals.ThreadPoolForkJoin;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -22,7 +21,7 @@ public class ThreadPoolSample {
         // By default, the ThreadPoolExecutor only considers non-core threads for removal. In order to apply the same removal policy to core threads, we can use the allowCoreThreadTimeOut(true) method.
 
         ThreadPoolExecutor executor =
-                (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+            (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         executor.submit(() -> {
             Thread.sleep(1000);
             return null;
@@ -52,7 +51,7 @@ public class ThreadPoolSample {
         // The queue size in the example above will always be zero because internally a SynchronousQueue instance is used.
         // In a SynchronousQueue, pairs of insert and remove operations always occur simultaneously, so the queue never actually contains anything.
         ThreadPoolExecutor executor2 =
-                (ThreadPoolExecutor) Executors.newCachedThreadPool();
+            (ThreadPoolExecutor) Executors.newCachedThreadPool();
         executor2.submit(() -> {
             Thread.sleep(1000);
             return null;

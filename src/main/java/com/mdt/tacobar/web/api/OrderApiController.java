@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/orders",
-        produces = "application/json")
+    produces = "application/json")
 @CrossOrigin(origins = "*")
 public class OrderApiController {
 
@@ -52,6 +52,7 @@ public class OrderApiController {
     public void deleteOrder(@PathVariable("orderId") Long orderId) {
         try {
             repo.deleteById(orderId);
-        } catch (EmptyResultDataAccessException e) {}
+        } catch (EmptyResultDataAccessException e) {
+        }
     }
 }

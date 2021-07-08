@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Test {
     public static void printList(List<?> list) {  // Unbounded Wildcards
-        for (Object x: list) System.out.println(x);
+        for (Object x : list) System.out.println(x);
     }
+
     public static void main(String[] args) {
         List<String> keywords = new ArrayList<>();
         keywords.add("java");

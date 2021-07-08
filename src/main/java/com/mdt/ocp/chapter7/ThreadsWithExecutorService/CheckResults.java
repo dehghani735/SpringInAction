@@ -6,7 +6,7 @@ public class CheckResults {
     private static int counter = 0;
 
     public static void main(String[] args) throws InterruptedException,
-            ExecutionException {
+        ExecutionException {
         ExecutorService service = null;
         try {
             service = Executors.newSingleThreadExecutor();

@@ -1,9 +1,9 @@
 package com.mdt.tacobar.web.api;
 
 import com.mdt.tacobar.Ingredient;
+import com.mdt.tacobar.Ingredient.Type;
 import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
-import com.mdt.tacobar.Ingredient.Type;
 
 public class IngredientResource extends RepresentationModel<IngredientResource> {
 

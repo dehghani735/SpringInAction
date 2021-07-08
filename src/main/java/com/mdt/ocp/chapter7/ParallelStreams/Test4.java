@@ -1,7 +1,6 @@
 package com.mdt.ocp.chapter7.ParallelStreams;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class Test4 {
     public static void main(String[] args) {

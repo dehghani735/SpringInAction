@@ -2,7 +2,6 @@ package com.mdt.tacobar.data;
 
 import com.mdt.tacobar.Order;
 import com.mdt.tacobar.User;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 

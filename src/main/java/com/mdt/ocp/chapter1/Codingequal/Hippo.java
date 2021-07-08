@@ -17,7 +17,7 @@ public class Hippo {
 //        return "Name: " + name + ", Weight: " + weight;
         // Apache Commons Lang facility using Reflection
         return ToStringBuilder.reflectionToString(this,
-                ToStringStyle.SHORT_PREFIX_STYLE);
+            ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
     public static void main(String[] args) {

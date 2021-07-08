@@ -2,6 +2,7 @@ package com.mdt.ocp.chapter1.NestedClasses.LocalInner;
 
 public class Outer {
     private int length = 5;
+
     public void calculate() {
         final int width = 20;
         class Inner {

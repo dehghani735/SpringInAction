@@ -1,7 +1,6 @@
 package com.mdt.ocp.chapter4.AdvancedStreamPipeline;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,13 +29,13 @@ public class Test {
         //
         Stream<String> ohMy3 = Stream.of("lions", "tigers", "bears");
         TreeSet<String> result3 = ohMy3.filter(s -> s.startsWith("t"))
-                .collect(Collectors.toCollection(TreeSet::new));
+            .collect(Collectors.toCollection(TreeSet::new));
         System.out.println(result3); // [tigers]
         System.out.println("===");
         // collecting into maps
         Stream<String> ohMy4 = Stream.of("lions", "tigers", "bears");
         Map<String, Integer> map = ohMy4.collect(
-                Collectors.toMap(s -> s, String::length)); // s-> s is equal to Function.identity()
+            Collectors.toMap(s -> s, String::length)); // s-> s is equal to Function.identity()
         System.out.println(map); // {lions=5, bears=5, tigers=6}
         System.out.println("===");
 
@@ -48,53 +47,53 @@ public class Test {
         // toMap with merge
         Stream<String> ohMy6 = Stream.of("lions", "tigers", "bears");
         Map<Integer, String> map3 = ohMy6.collect(Collectors.toMap(
-                String::length, k -> k, (s1, s2) -> s1 + "," + s2));
+            String::length, k -> k, (s1, s2) -> s1 + "," + s2));
         System.out.println(map3); // {5=lions,bears, 6=tigers}
         System.out.println(map3.getClass()); // class. java.util.HashMap
         System.out.println("===");
         // toMap with merge and return type
         Stream<String> ohMy7 = Stream.of("lions", "tigers", "bears");
         TreeMap<Integer, String> map4 = ohMy7.collect(Collectors.toMap(
-                String::length, k -> k, (s1, s2) -> s1 + "," + s2, TreeMap::new));
+            String::length, k -> k, (s1, s2) -> s1 + "," + s2, TreeMap::new));
         System.out.println(map4); // // {5=lions,bears, 6=tigers}
         System.out.println(map4.getClass()); // class. java.util.TreeMap
         System.out.println("===");
         // Collecting Using Grouping, Partitioning, and Mapping
         Stream<String> ohMy8 = Stream.of("lions", "tigers", "bears");
         Map<Integer, List<String>> map5 = ohMy8.collect(
-                Collectors.groupingBy(String::length));
+            Collectors.groupingBy(String::length));
         System.out.println(map5); // {5=[lions, bears], 6=[tigers]}
         System.out.println("===");
         // with donwstream collector
         Stream<String> ohMy9 = Stream.of("lions", "tigers", "bears");
         Map<Integer, Set<String>> map6 = ohMy9.collect(
-                Collectors.groupingBy(String::length, Collectors.toSet()));
+            Collectors.groupingBy(String::length, Collectors.toSet()));
         System.out.println(map6); // {5=[lions, bears], 6=[tigers]}
         System.out.println("===");
 
         //
         Stream<String> ohMy10 = Stream.of("lions", "tigers", "bears");
         TreeMap<Integer, Set<String>> map7 = ohMy10.collect(
-                Collectors.groupingBy(String::length, TreeMap::new, Collectors.toSet()));
+            Collectors.groupingBy(String::length, TreeMap::new, Collectors.toSet()));
         System.out.println(map7); // {5=[lions, bears], 6=[tigers]}
         System.out.println("===");
         // partitioning
         Stream<String> ohMy11 = Stream.of("lions", "tigers", "bears");
         Map<Boolean, List<String>> map8 = ohMy11.collect(
-                Collectors.partitioningBy(s -> s.length() <= 5));
+            Collectors.partitioningBy(s -> s.length() <= 5));
         System.out.println(map8); // {false=[tigers], true=[lions, bears]}
         System.out.println("===");
         // partiotioning to set
         Stream<String> ohMy12 = Stream.of("lions", "tigers", "bears");
         Map<Boolean, Set<String>> map9 = ohMy12.collect(
-                Collectors.partitioningBy(s -> s.length() <= 7, Collectors.toSet()));
+            Collectors.partitioningBy(s -> s.length() <= 7, Collectors.toSet()));
         System.out.println(map9);// {false=[], true=[lions, tigers, bears]}
         System.out.println("===");
 
         //
         Stream<String> ohMy13 = Stream.of("lions", "tigers", "bears");
         Map<Integer, Long> map10 = ohMy13.collect(Collectors.groupingBy(
-                String::length, Collectors.counting()));
+            String::length, Collectors.counting()));
         System.out.println(map10); // {5=2, 6=1}
         System.out.println("===");
 
@@ -104,7 +103,7 @@ public class Test {
 
     private static void threeDigit(Optional<Integer> optional) {
         optional.map(n -> "" + n) // part 1
-                .filter(s -> s.length() == 3) // part 2
-                .ifPresent(System.out::println); // part 3
+            .filter(s -> s.length() == 3) // part 2
+            .ifPresent(System.out::println); // part 3
     }
 }

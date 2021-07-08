@@ -7,7 +7,7 @@ public class InheritableThreadLocalBasicExample {
 
         ThreadLocal<String> threadLocal = new ThreadLocal<>();
         InheritableThreadLocal<String> inheritableThreadLocal =
-                new InheritableThreadLocal<>();
+            new InheritableThreadLocal<>();
 
         Thread thread1 = new Thread(() -> {
             System.out.println("===== Thread 1 =====");
@@ -17,7 +17,7 @@ public class InheritableThreadLocalBasicExample {
             System.out.println(threadLocal.get());
             System.out.println(inheritableThreadLocal.get());
 
-            Thread childThread = new Thread( () -> {
+            Thread childThread = new Thread(() -> {
                 System.out.println("===== ChildThread =====");
                 System.out.println(threadLocal.get());
                 System.out.println(inheritableThreadLocal.get());

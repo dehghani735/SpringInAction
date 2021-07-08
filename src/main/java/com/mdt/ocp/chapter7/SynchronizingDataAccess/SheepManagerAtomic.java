@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SheepManagerAtomic {
     private AtomicInteger sheepCount = new AtomicInteger(0);
+
     private void incrementAndReport() {
         System.out.print(sheepCount.incrementAndGet() + " ");
     }

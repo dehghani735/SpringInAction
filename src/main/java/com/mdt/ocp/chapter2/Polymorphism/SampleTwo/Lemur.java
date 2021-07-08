@@ -2,9 +2,11 @@ package com.mdt.ocp.chapter2.Polymorphism.SampleTwo;
 
 public class Lemur extends Primate implements HasTail {
     public int age = 10;
+
     public boolean isTailStriped() {
         return false;
     }
+
     public static void main(String[] args) {
         Lemur lemur = new Lemur();
         System.out.println(lemur.age);

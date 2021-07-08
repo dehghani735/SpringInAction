@@ -13,13 +13,14 @@ public class Card {
 
     @Override
     public boolean equals(Object obj) {
-        if ( !(obj instanceof Card)) return false;
+        if (!(obj instanceof Card)) return false;
         Card otherCard = (Card) obj;
         return rank.equals(otherCard.rank) && suit.equals(otherCard.suit);
     }
 
     /**
      * They go in the same pile (hash code) if they have the same rank.
+     *
      * @return
      */
     @Override

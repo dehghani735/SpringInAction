@@ -37,7 +37,7 @@ public class LionPenManagerBarrier {
             LionPenManagerBarrier manager = new LionPenManagerBarrier();
             CyclicBarrier c1 = new CyclicBarrier(4);
             CyclicBarrier c2 = new CyclicBarrier(4,
-                    () -> System.out.println("*** Pen Cleaned!"));
+                () -> System.out.println("*** Pen Cleaned!"));
             for (int i = 0; i < 4; i++)
                 service.submit(() -> manager.performTask(c1, c2));
         } finally {

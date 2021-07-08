@@ -1,7 +1,5 @@
 package com.mdt.ocp.Additionals;
 
-import java.text.SimpleDateFormat;
-
 public class Test1 {
     public static void main(String[] args) {
         ThreadLocal<Integer> threadLocalValue = new ThreadLocal<>();

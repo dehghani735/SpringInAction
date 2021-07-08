@@ -2,10 +2,13 @@ package com.mdt.ocp.chapter1.NestedClasses.MemberInner;
 
 public class A {
     private int x = 10;
+
     class B {
         private int x = 20;
+
         class C {
             private int x = 30;
+
             public void printAllX() {
                 System.out.println(x);
                 System.out.println(this.x);

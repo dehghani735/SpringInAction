@@ -24,24 +24,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/design", "/orders/**")
-                .access("hasRole('ROLE_USER')")
-                .antMatchers("/", "/**").permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
+            .authorizeRequests()
+            .antMatchers("/design", "/orders/**")
+            .access("hasRole('ROLE_USER')")
+            .antMatchers("/", "/**").permitAll()
+            .and()
+            .formLogin()
+            .loginPage("/login")
 //                .defaultSuccessUrl("/design", true)
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .and()
-                .csrf()
-                .ignoringAntMatchers("/h2-console/**")
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
+            .and()
+            .logout()
+            .logoutSuccessUrl("/")
+            .and()
+            .csrf()
+            .ignoringAntMatchers("/h2-console/**")
+            .and()
+            .headers()
+            .frameOptions()
+            .sameOrigin()
         ;
     }
 
@@ -52,11 +52,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
+        throws Exception {
 
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(encoder());
 
 //        in this method we will use AuthenticationManagerBuilder object to specify how users will be looked
 //        up during authentication.

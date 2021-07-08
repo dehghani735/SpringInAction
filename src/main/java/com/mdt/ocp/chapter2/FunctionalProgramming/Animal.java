@@ -11,7 +11,15 @@ public class Animal {
         this.canSwim = canSwim;
     }
 
-    public boolean canHop() {return canHop;}
-    public boolean canSwim() {return canSwim;}
-    public String toString() {return species;}
+    public boolean canHop() {
+        return canHop;
+    }
+
+    public boolean canSwim() {
+        return canSwim;
+    }
+
+    public String toString() {
+        return species;
+    }
 }

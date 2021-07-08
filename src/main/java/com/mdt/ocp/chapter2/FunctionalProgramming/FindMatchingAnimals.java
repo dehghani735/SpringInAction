@@ -10,9 +10,9 @@ public class FindMatchingAnimals {
 //        }
 //    }
 
-//    way #2
+    //    way #2
     private static void print(Animal animal, Predicate<Animal> trait) {
-        if(trait.test(animal)){
+        if (trait.test(animal)) {
             System.out.println(animal);
         }
     }

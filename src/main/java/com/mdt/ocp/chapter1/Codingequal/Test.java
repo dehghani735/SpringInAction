@@ -12,13 +12,15 @@ public class Test {
         this.name = name;
     }
 
-    @Override public boolean equals(Object obj) {
-        if (! (obj instanceof Test)) return false;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Test)) return false;
         Test t = (Test) obj;
         return name.equals(t.name);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
 
         Random rand = new Random();
 

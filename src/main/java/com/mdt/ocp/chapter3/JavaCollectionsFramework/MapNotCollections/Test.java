@@ -21,7 +21,7 @@ public class Test {
         map2.put("lion", "meat");
         map2.put("giraffe", "leaf");
         String food2 = map2.get("koala"); // bamboo
-        for (String key: map2.keySet())
+        for (String key : map2.keySet())
             System.out.print(key + ","); // giraffe,koala,lion,
 
 //        System.out.println(map2.contains("lion")); // DOES NOT COMPILE

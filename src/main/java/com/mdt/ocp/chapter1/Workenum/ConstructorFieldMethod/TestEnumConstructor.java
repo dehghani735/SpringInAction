@@ -25,24 +25,40 @@ public class TestEnumConstructor {
 
     public enum Season2 {
         WINTER {
-            public void printHours() { System. out .println("9am-3pm"); }
+            public void printHours() {
+                System.out.println("9am-3pm");
+            }
         }, SPRING {
-            public void printHours() { System. out .println("9am-5pm"); }
+            public void printHours() {
+                System.out.println("9am-5pm");
+            }
         }, SUMMER {
-            public void printHours() { System. out .println("9am-7pm"); }
+            public void printHours() {
+                System.out.println("9am-7pm");
+            }
         }, FALL {
-            public void printHours() { System. out .println("9am-5pm"); }
+            public void printHours() {
+                System.out.println("9am-5pm");
+            }
         };
+
         public abstract void printHours();
     }
 
     public enum Season3 {
         WINTER {
-            public void printHours() { System.out.println("short hours"); }
+            public void printHours() {
+                System.out.println("short hours");
+            }
         }, SUMMER {
-            public void printHours() { System.out.println("long hours"); }
+            public void printHours() {
+                System.out.println("long hours");
+            }
         }, SPRING, FALL;
-        public void printHours() { System.out.println("default hours"); }
+
+        public void printHours() {
+            System.out.println("default hours");
+        }
     }
 
     public static void main(String[] args) {

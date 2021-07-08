@@ -27,7 +27,7 @@ public class WeighAnimalAction extends RecursiveAction {
             int middle = start + ((end - start) / 2);
             System.out.println("[start=" + start + ",middle=" + middle + ",end=" + end + "]");
             invokeAll(new WeighAnimalAction(weights, start, middle),
-                    new WeighAnimalAction(weights, middle, end));
+                new WeighAnimalAction(weights, middle, end));
         }
     }
 
@@ -40,6 +40,6 @@ public class WeighAnimalAction extends RecursiveAction {
         System.out.println();
         System.out.print("Weights: ");
         Arrays.asList(weights).stream().forEach(
-                d -> System.out.print(d.intValue() + " "));
+            d -> System.out.print(d.intValue() + " "));
     }
 }

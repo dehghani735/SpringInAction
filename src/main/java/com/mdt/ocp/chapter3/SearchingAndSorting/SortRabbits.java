@@ -1,9 +1,14 @@
 package com.mdt.ocp.chapter3.SearchingAndSorting;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class SortRabbits {
-    static class Rabbit {int id;}
+    static class Rabbit {
+        int id;
+    }
 
     public static void main(String[] args) {
         List<Rabbit> rabbits = new ArrayList<>();

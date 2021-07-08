@@ -1,7 +1,5 @@
 package com.mdt.ocp.chapter4.BuiltInFunctionalInterfaces;
 
-import org.apache.tomcat.jni.Local;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +37,7 @@ public class Test {
 
         // BiConsumer
         Map<String, Integer> map = new HashMap<>();
-        BiConsumer<String, Integer> b1 = (k, v) -> map.put(k,v);
+        BiConsumer<String, Integer> b1 = (k, v) -> map.put(k, v);
         BiConsumer<String, Integer> b2 = map::put;
         b1.accept("chicken", 7);
         b1.accept("chick", 1);
@@ -72,7 +70,7 @@ public class Test {
         Predicate<String> brown = s -> s.contains("brown");
 
         Predicate<String> brownEggs = s -> s.contains("egg") && s.contains("brown");
-        Predicate<String> otherEggs = s -> s.contains("egg") && ! s.contains("brown");
+        Predicate<String> otherEggs = s -> s.contains("egg") && !s.contains("brown");
 
         Predicate<String> brownEggs2 = egg.and(brown);
         Predicate<String> otherEggs2 = egg.and(brown.negate());

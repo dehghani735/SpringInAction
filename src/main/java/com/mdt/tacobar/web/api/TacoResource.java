@@ -1,6 +1,5 @@
 package com.mdt.tacobar.web.api;
 
-import com.mdt.tacobar.Ingredient;
 import com.mdt.tacobar.Taco;
 import lombok.Getter;
 import org.springframework.hateoas.RepresentationModel;
@@ -13,7 +12,7 @@ import java.util.List;
 public class TacoResource extends RepresentationModel<TacoResource> {
 
     private static final IngredientResourceAssembler ingredientAssembler =
-            new IngredientResourceAssembler();
+        new IngredientResourceAssembler();
 
     @Getter
     private final String name;

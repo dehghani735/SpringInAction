@@ -35,13 +35,13 @@ public class Test {
         //
         ZoneId zone = ZoneId.of("US/Eastern");
         ZonedDateTime zoned1 = ZonedDateTime.of(2015, 1, 20,
-                6, 15, 30, 200, zone);
+            6, 15, 30, 200, zone);
         ZonedDateTime zoned2 = ZonedDateTime.of(date1, time1, zone);
         ZonedDateTime zoned3 = ZonedDateTime.of(dateTime1, zone);
         // finding timezones
         ZoneId.getAvailableZoneIds().stream()
-                .filter(z -> z.contains("Asia") || z.contains("America"))
-                .sorted().forEach(System.out::println);
+            .filter(z -> z.contains("Asia") || z.contains("America"))
+            .sorted().forEach(System.out::println);
 
         //
 //        LocalDate d = new LocalDate(); // DOES NOT COMPILE
@@ -68,7 +68,7 @@ public class Test {
         localDateTime = localDateTime.minusSeconds(2);
 
         LocalDateTime dateTime = LocalDateTime.of(date, time)
-                .minusDays(1).minusHours(10).minusSeconds(30); // chained
+            .minusDays(1).minusHours(10).minusSeconds(30); // chained
         // tricky one, immutable type ignored
         LocalDate date4 = LocalDate.of(2020, Month.JANUARY, 20);
         date4.plusDays(10);
@@ -153,7 +153,7 @@ public class Test {
         // Instant
         Instant now = Instant.now();
         // do something time consuming
-        System.out.println(5*9877);
+        System.out.println(5 * 9877);
         Instant later = Instant.now();
         Duration duration2 = Duration.between(now, later);
         System.out.println(duration2.toMillis());

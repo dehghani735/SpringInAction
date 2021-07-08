@@ -1,7 +1,5 @@
 package com.mdt.ocp.chapter1.Codingequal;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-
 public class Lion {
     private int idNumber;
     private int age;
@@ -16,7 +14,7 @@ public class Lion {
     @Override
     public boolean equals(Object obj) {
         // way #1
-        if ( !(obj instanceof Lion)) return false;
+        if (!(obj instanceof Lion)) return false;
         Lion otherLion = (Lion) obj;
         return otherLion.idNumber == this.idNumber;
 

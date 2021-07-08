@@ -76,8 +76,8 @@ public class Test {
         //
         Map<String, Integer> stringLength = new HashMap<>();
         stringLength.put("John", 5);
-        System.out.println((long)stringLength.computeIfAbsent("John", s -> s.length()));
-        System.out.println((long)stringLength.computeIfAbsent("Ali", s -> s.length()));
+        System.out.println((long) stringLength.computeIfAbsent("John", s -> s.length()));
+        System.out.println((long) stringLength.computeIfAbsent("Ali", s -> s.length()));
         System.out.println(stringLength);
 
         //

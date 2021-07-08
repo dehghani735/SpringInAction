@@ -4,7 +4,6 @@ import com.mdt.tacobar.Order;
 import com.mdt.tacobar.User;
 import com.mdt.tacobar.data.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -58,12 +57,12 @@ public class OrderController {
 
     @GetMapping
     public String ordersForUser(
-            @AuthenticationPrincipal User user, Model model) {
+        @AuthenticationPrincipal User user, Model model) {
 
         // to get #pageSize of the most recently placed orders for the user
         Pageable pageable = PageRequest.of(0, orderProps.getPageSize());
         model.addAttribute("orders",
-                orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
+            orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
     }
 }

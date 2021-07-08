@@ -1,6 +1,8 @@
 package com.mdt.ocp.chapter3.OCACollections.SearchAndSort;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package com.mdt.ocp.chapter4.ReturnOptional;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.Optional;
 
 public class Test {
@@ -56,8 +54,8 @@ public class Test {
 
         var y1 = Optional.of("STRING");
         var y2 = Optional
-                .of("string")
-                .flatMap(s3 -> Optional.of("STRING"));
+            .of("string")
+            .flatMap(s3 -> Optional.of("STRING"));
         System.out.println(y1);
         System.out.println(y2);
     }

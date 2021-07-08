@@ -1,9 +1,7 @@
 package com.mdt.ocp.chapter7.ConcurrentCollections;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 public class Test {
     public static void main(String[] args) {

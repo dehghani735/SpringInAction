@@ -1,9 +1,7 @@
 package com.mdt.ocp.chapter8;
 
-import java.io.Serializable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -75,14 +73,14 @@ public class Test {
         //        assertEquals("Hello World", completableFuture.get());
 
         CompletableFuture<String> future1
-                = CompletableFuture.supplyAsync(() -> "Hello");
+            = CompletableFuture.supplyAsync(() -> "Hello");
         CompletableFuture<String> future2
-                = CompletableFuture.supplyAsync(() -> "Beautiful");
+            = CompletableFuture.supplyAsync(() -> "Beautiful");
         CompletableFuture<String> future3
-                = CompletableFuture.supplyAsync(() -> "World");
+            = CompletableFuture.supplyAsync(() -> "World");
 
         CompletableFuture<Void> combinedFuture
-                = CompletableFuture.allOf(future1, future2, future3);
+            = CompletableFuture.allOf(future1, future2, future3);
 
 // ...
 
@@ -91,15 +89,15 @@ public class Test {
         System.out.println(future1.isDone() + " " + future2.isDone() + " " + future3.isDone());
 
         String combined = Stream.of(future1, future2, future3)
-                .map(CompletableFuture::join)
-                .collect(Collectors.joining(" "));
+            .map(CompletableFuture::join)
+            .collect(Collectors.joining(" "));
         System.out.println(combined);
 
 
         String name = null;
 // ...
         CompletableFuture<String> completableFuture
-                = CompletableFuture.supplyAsync(() -> {
+            = CompletableFuture.supplyAsync(() -> {
             if (name == null) {
                 throw new RuntimeException("Computation error!");
             }
@@ -113,10 +111,10 @@ public class Test {
         // These methods are usually intended for running a corresponding step of execution in another thread.
 
         CompletableFuture<String> completableFuture2
-                = CompletableFuture.supplyAsync(() -> "Hello");
+            = CompletableFuture.supplyAsync(() -> "Hello");
 
         CompletableFuture<String> future = completableFuture2
-                .thenApplyAsync(s -> s + " World");
+            .thenApplyAsync(s -> s + " World");
 
         System.out.println(future.get());
     }

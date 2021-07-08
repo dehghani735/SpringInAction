@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 
 public class AddData {
     public static void main(String[] args) throws InterruptedException,
-            ExecutionException {
+        ExecutionException {
         ExecutorService service = null;
         try {
             service = Executors.newSingleThreadExecutor();

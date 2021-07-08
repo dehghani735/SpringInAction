@@ -1,7 +1,6 @@
 package com.mdt.ocp.chapter3.AdditionsJava8.RemovingConditionally;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Test {
