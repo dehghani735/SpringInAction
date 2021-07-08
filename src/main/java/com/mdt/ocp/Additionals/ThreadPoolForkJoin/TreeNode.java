@@ -12,6 +12,6 @@ public class TreeNode {
 
     TreeNode(int value, TreeNode... children) {
         this.value = value;
-        this.children = Sets.newHashSet(children);
+//        this.children = Sets.newHashSet(children);
     }
 }

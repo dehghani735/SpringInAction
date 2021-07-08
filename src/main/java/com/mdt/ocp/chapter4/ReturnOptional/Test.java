@@ -38,6 +38,7 @@ public class Test {
         Optional<Double> opt3 = average(90, 100);
         opt3.ifPresent(System.out::println);
         //
+        System.out.println("from here");
         Optional<Double> opt4 = average();
         System.out.println(opt4.orElse(Double.NaN));
         System.out.println(opt4.orElseGet(() -> Math.random()));

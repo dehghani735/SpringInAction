@@ -2273,3 +2273,22 @@ instructions to the task.
 
 - A race condition is an undesirable result that occurs when two tasks, which **should be completed sequentially**, are **completed at the same time**.
 - For the exam, you should understand that race conditions lead to invalid data if they are not properly handled. Even the solution where both participants fail to proceed is preferable to one in which invalid data is permitted to enter the system.
+
+### Additionals
+
+- https://www.baeldung.com/java-optional-or-else-vs-or-else-get
+  - Optional.orElse vs Optional.orElseGet
+  - former gets T and evaluate if not. latter gets Supplier and is lazy evaluated
+
+#### Java Logging
+
+- loggers, appenders and layouts.
+- 1. Adding needed libraries
+- 2. Configuration
+- 3. Placing log statements
+
+##### Log4j 2
+
+- Log4j 2 is new and improved version of the Log4j logging framework. The most compelling improvement is the possibility of asynchronous logging.
+-  log4j.xml file
+
