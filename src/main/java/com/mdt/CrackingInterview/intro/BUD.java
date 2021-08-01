@@ -1,4 +1,4 @@
-package com.mdt.CrackingInterview;
+package com.mdt.CrackingInterview.intro;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,10 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Optimize {
+/**
+ * @author MDT
+ * Date: 000417
+ */
+public class BUD {
 
     public static void main(String[] args) {
-        var n = 10000;
+        var n = 1000;
         var result = 0;
         Map<Integer, List<Pair>> memoize = new HashMap<>();
 
@@ -24,6 +28,7 @@ public class Optimize {
             }
         }
 
+//        one way:
         for (int a = 0; a < n; a++) {
             for (int b = 0; b < n; b++) {
                 result = (int) (Math.pow(a, 3) + Math.pow(b, 3));
@@ -33,6 +38,13 @@ public class Optimize {
                 System.out.println(finalA + ", " + finalB + ", " + matches);
 
             }
+        }
+
+//        optimize:
+        for (var pairsList : memoize.values()) {
+            for (var pair : pairsList)
+                for (var pair2 : pairsList)
+                    System.out.println(pair + ", " + pair2);
         }
     }
 
