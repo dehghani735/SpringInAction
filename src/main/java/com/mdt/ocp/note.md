@@ -662,8 +662,9 @@ We will end with some methods that use functional interfaces, such as forEach() 
   a built-in data structure that contains **other objects or primitives**.
 - Arrays.asList(array): convert array to List.
 - list.toArray(): convert List to array
+  - {@link in chapter1.Intro.java} list.toArray(new String[list.size()]) to prevent classCastException
 - Implementations of `List` are allowed to add their own behavior. The implementation used when calling asList() has the
-  added feature of **not being resizable** but honoring all of the other methods in the interface.
+  added feature of **not being resizable** but honoring all the other methods in the interface.
 
 #### Searching and Sorting
 
