@@ -77,6 +77,7 @@ public class Intro {
     }
 
     // TODO implement Hashtable, ArrayList, StringBuilder yourself
+    // TODO TreeMap Red-Black tree?
     public void hashtable() {
         // TODO read about Dictionary (class)  and Map (Interface)
         Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();

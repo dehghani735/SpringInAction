@@ -12,7 +12,7 @@ import static org.slf4j.LoggerFactory.getLogger;
  */
 public class Q1 {
 
-    private static final Logger log = getLogger(Intro.class);
+    private static final Logger log = getLogger(Q1.class);
 
     /**
      * Make assumption: Is the string ascii string or unicode string?
