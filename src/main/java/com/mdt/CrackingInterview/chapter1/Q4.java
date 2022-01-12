@@ -34,6 +34,18 @@ public class Q4 {
         log.info(String.valueOf(q4.isPermutationOfPalindrome1("Tact Coa")));
         log.info(String.valueOf(q4.isPermutationOfPalindrome2("Tact Coa")));
         log.info(String.valueOf(q4.isPermutationOfPalindrome3("Tact Coa")));
+
+        // NOTE
+        log.info(String.valueOf(Integer.MAX_VALUE)); // 2^31 - 1
+        log.info(String.valueOf(Integer.MIN_VALUE)); // -2^31
+
+        // Some useful Notes about Integer
+        log.info(Integer.toBinaryString(16));
+        log.info(String.valueOf(Integer.bitCount(7)));
+        log.info(String.valueOf(Integer.toHexString(7)));
+        log.info(String.valueOf(Integer.toOctalString(7)));
+        log.info(String.valueOf(Integer.parseInt("7")));
+        log.info(String.valueOf(Integer.parseInt("10", 8))); // Exciting, 8 got Exception
     }
 
     boolean isPermutationOfPalindrome1(String str) {
@@ -105,6 +117,16 @@ public class Q4 {
         return bitVector == 0 || atMostOneBitSet(bitVector);
     }
 
+    /**
+     * Note 1: complement 2: from right side, go until first 1, left it and complement to the left.
+     * 0000 0001  - complement 2 -> 1111 1111
+     * (0001 0000)  - 1  = 0001 0000 + 1111 1111 = 0000 1111
+     * <p>
+     * Note 2: to check if one bit is one
+     *
+     * @param bitVector
+     * @return
+     */
     private boolean atMostOneBitSet(int bitVector) {
         return (bitVector & (bitVector - 1)) == 0;
     }
