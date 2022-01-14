@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Bottlenecks, Unnecessary work, Duplicated work
+ * Given an array of distinct integer values, count the number of pairs of integers that have difference k.
  *
  * @author MDT
  * Date: 000417
