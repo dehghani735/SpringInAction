@@ -51,7 +51,6 @@ public class Q4 {
     }
 
     /**
-     *
      * @param head
      * @param partition
      */
@@ -63,25 +62,25 @@ public class Q4 {
                 if (less == null)
                     less = head;
                 else
-                    lessHelper.next = head;
+                    lessHelper.setNext(head);
 
                 lessHelper = head;
             } else {
                 if (greater == null)
                     greater = head;
                 else
-                    greaterHelper.next = head;
+                    greaterHelper.setNext(head);
 
                 greaterHelper = head;
             }
             head = head.next;
         }
         if (greaterHelper != null)
-            greaterHelper.next = null;
+            greaterHelper.setNext(null);
 
         if (lessHelper != null) {
-            lessHelper.next = greater;
-            head            = lessHelper;
+            lessHelper.setNext(greater);
+            head = lessHelper;
         }
     }
 }
