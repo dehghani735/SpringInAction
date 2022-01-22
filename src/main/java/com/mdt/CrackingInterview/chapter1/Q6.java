@@ -25,7 +25,7 @@ public class Q6 {
      * @param str
      * @return
      */
-    private String compressed(String str) {
+    public String compressed(String str) {
         var oldLength = str.length();
         var sb        = new StringBuilder(); // good point
         var count     = 1;
@@ -51,7 +51,7 @@ public class Q6 {
      * @param str
      * @return
      */
-    private String compressed2(String str) {
+    public String compressed2(String str) {
         var finalLength = computeCompression(str);
 
         return "";

@@ -54,7 +54,7 @@ public class Q4 {
      * @param head
      * @param partition
      */
-    private void partition(LinkedListNode head, int partition) {
+    public void partition(LinkedListNode head, int partition) {
         LinkedListNode less    = null, lessHelper = null;
         LinkedListNode greater = null, greaterHelper = null;
         while (head != null) {
@@ -63,7 +63,6 @@ public class Q4 {
                     less = head;
                 else
                     lessHelper.setNext(head);
-
                 lessHelper = head;
             } else {
                 if (greater == null)

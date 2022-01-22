@@ -63,7 +63,7 @@ public class Q5 {
      * @param n2
      * @return
      */
-    private LinkedListNode sumListsInReverseOrder(LinkedListNode n1, LinkedListNode n2) {
+    public LinkedListNode sumListsInReverseOrder(LinkedListNode n1, LinkedListNode n2) {
         LinkedListNode resultRunner = null, result = null;
         var            tenReminder  = 0;
         while (n1 != null && n2 != null) {
@@ -109,7 +109,7 @@ public class Q5 {
      * @param carry
      * @return
      */
-    private LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carry) {
+    public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2, int carry) {
         if (l1 == null && l2 == null && carry == 0)
             return null;
 
@@ -137,7 +137,7 @@ public class Q5 {
      * @param l2
      * @return
      */
-    LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2) {
+    public LinkedListNode addLists(LinkedListNode l1, LinkedListNode l2) {
         // TODO must implement
         return null;
     }

@@ -57,7 +57,7 @@ public class Q1 {
     }
 
     // TODO book has its own implementation. consider that next time
-    private LinkedList<Integer> removeDups1(LinkedList<Integer> linkedList) {
+    public LinkedList<Integer> removeDups1(LinkedList<Integer> linkedList) {
         // TODO study deeply: This class implements the Set interface, backed by a hash table (actually a HashMap instance).
         var set = new HashSet<Integer>();
         for (int i = 0; i < linkedList.size(); i++) {
@@ -71,7 +71,7 @@ public class Q1 {
         return linkedList;
     }
 
-    private LinkedListNode removeDups2(LinkedListNode head) {
+    public LinkedListNode removeDups2(LinkedListNode head) {
         LinkedListNode secondPointer = null;
         var            result        = head;
         while (head != null) {

@@ -38,7 +38,7 @@ public class Q2 {
      * @param str2
      * @return
      */
-    boolean permutation(String str1, String str2) {
+    public boolean permutation(String str1, String str2) {
         if (str1.length() != str2.length())
             return false;
 

@@ -52,7 +52,7 @@ public class Q8 {
         System.out.println();
     }
 
-    int[][] zeroMatrix(int[][] matrix) {
+     public int[][] zeroMatrix(int[][] matrix) {
         var cellArray = new ArrayList<Cell>();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {

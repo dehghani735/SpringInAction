@@ -27,7 +27,7 @@ public class Q5 {
         log.info(String.valueOf(q5.oneEditAway1("pale", "bae")));
     }
 
-    boolean oneEditAway1(String str1, String str2) {
+     public boolean oneEditAway1(String str1, String str2) {
         if (str1.length() == str2.length())
             return checkOneReplace(str1, str2);
         else if (str1.length() + 1 == str2.length())
@@ -81,7 +81,7 @@ public class Q5 {
      * @param str2
      * @return
      */
-    boolean oneEditAway2(String str1, String str2) {
+    public boolean oneEditAway2(String str1, String str2) {
         return false; // TODO make it compact
     }
 }

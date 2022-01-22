@@ -51,7 +51,7 @@ public class Q3 {
      *
      * @param middle
      */
-    private void deleteMiddleNodeBad(LinkedListNode middle) {
+    public void deleteMiddleNodeBad(LinkedListNode middle) {
         if (middle == null)
             return;
 
@@ -65,7 +65,7 @@ public class Q3 {
         current.prev.next = null;
     }
 
-    private void deleteMiddleNode(LinkedListNode middle) {
+    public void deleteMiddleNode(LinkedListNode middle) {
         if (middle == null || middle.next == null)
             return;
 

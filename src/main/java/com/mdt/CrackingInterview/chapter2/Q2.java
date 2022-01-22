@@ -40,7 +40,7 @@ public class Q2 {
         log.info(String.valueOf(result2));
     }
 
-    private int findKthToLast(LinkedListNode n1, int k) {
+    public int findKthToLast(LinkedListNode n1, int k) {
         var runner = n1;
         for (int i = 0; i < k; i++) {
             if (runner == null)
@@ -59,7 +59,7 @@ public class Q2 {
     }
 
     // TODO think deeply
-    private int printKthToLast(LinkedListNode head, int k) {
+    public int printKthToLast(LinkedListNode head, int k) {
         if (head == null)
             return 0;
 
