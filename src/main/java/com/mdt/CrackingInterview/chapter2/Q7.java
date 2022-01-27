@@ -37,7 +37,7 @@ public class Q7 {
         n7.setNext(n8);
         n8.setNext(null);
 
-        var result = q7.checkIntersection(n1, n4);
+        var result = q7.checkIntersection1(n1, n4);
         log.info(result.map(linkedListNode -> String.valueOf(linkedListNode.data))
                 .orElse("These two singly linked lists don't intersect."));
     }
@@ -49,7 +49,7 @@ public class Q7 {
      * @param n2
      * @return
      */
-    private Optional<LinkedListNode> checkIntersection(LinkedListNode n1, LinkedListNode n2) {
+    private Optional<LinkedListNode> checkIntersection1(LinkedListNode n1, LinkedListNode n2) {
         var hashSet = new HashSet<LinkedListNode>();
         var l1      = n1;
         var l2      = n2;
@@ -62,6 +62,17 @@ public class Q7 {
                 return Optional.of(l2);
             l2 = l2.next;
         }
+        return Optional.empty();
+    }
+
+    /**
+     * idea: they have same end node
+     * @param n1
+     * @param n2
+     * @return
+     */
+    private Optional<LinkedListNode> checkIntersection2(LinkedListNode n1, LinkedListNode n2) {
+//        TODO implement next time
         return Optional.empty();
     }
 }
