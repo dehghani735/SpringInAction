@@ -9,8 +9,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * Balanced Parentheses in Expression
- *
+ * youtube video of hacker rank data structures playlist
  * @author detafti
+ *
+ * May 19, 2022
  */
 public class Solution {
     private static final Logger log = getLogger(Solution.class);
