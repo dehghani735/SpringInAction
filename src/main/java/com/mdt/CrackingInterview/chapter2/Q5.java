@@ -119,7 +119,7 @@ public class Q5 {
         if (l2 != null)
             value += l2.data;
         var result = new LinkedListNode(value % 10);
-        if (l1 != null || l1 != null) {
+        if (l1 != null || l2 != null) {
             var more = addLists(
                     l1 == null ? null : l1.next,
                     l2 == null ? null : l2.next,

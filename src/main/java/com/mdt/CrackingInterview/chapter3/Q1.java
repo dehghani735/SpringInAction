@@ -24,6 +24,7 @@ public class Q1 {
         log.info(String.valueOf(stack.pop(1)));
         log.info(String.valueOf(stack.peek(1)));
         log.info(String.valueOf(stack.peek(2)));
-
     }
+
+    // TODO implement flexible stack size in book. it has important notes about java concepts like inner class and others.
 }
