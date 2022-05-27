@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C7;
+package com.mdt.HackerRank.DataStructure.C7;
 
 /**
  * BST functions

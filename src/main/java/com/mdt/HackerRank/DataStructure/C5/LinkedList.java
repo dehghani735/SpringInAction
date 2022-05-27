@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C5;
+package com.mdt.HackerRank.DataStructure.C5;
 
 /**
  *

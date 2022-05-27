@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C8;
+package com.mdt.HackerRank.DataStructure.C8;
 
 /**
  * Trie

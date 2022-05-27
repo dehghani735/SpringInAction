@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C6;
+package com.mdt.HackerRank.DataStructure.C6;
 
 /**
  * validation of BST

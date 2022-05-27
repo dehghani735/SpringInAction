@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C2;
+package com.mdt.HackerRank.DataStructure.C2;
 
 import java.util.Stack;
 

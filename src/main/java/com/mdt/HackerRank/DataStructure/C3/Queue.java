@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C3;
+package com.mdt.HackerRank.DataStructure.C3;
 
 /**
  * Queue implementation

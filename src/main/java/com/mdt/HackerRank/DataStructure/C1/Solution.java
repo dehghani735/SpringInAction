@@ -1,6 +1,5 @@
-package com.mdt.HackerRank.C1;
+package com.mdt.HackerRank.DataStructure.C1;
 
-import com.mdt.CrackingInterview.chapter1.Q1;
 import org.slf4j.Logger;
 
 import java.util.Stack;

@@ -1,4 +1,4 @@
-package com.mdt.HackerRank.C4;
+package com.mdt.HackerRank.DataStructure.C4;
 
 /**
  * Cycles in a Linked List
