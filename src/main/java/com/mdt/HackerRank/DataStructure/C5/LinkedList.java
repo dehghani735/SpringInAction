@@ -3,7 +3,7 @@ package com.mdt.HackerRank.DataStructure.C5;
 /**
  *
  */
-public class LinkedList {
+public class LinkedList<N> {
     Node head;
 
     public void append(int data) {
