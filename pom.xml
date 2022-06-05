@@ -150,7 +150,12 @@
         <!--            <version>5.7.0</version>-->
         <!--            <scope>test</scope>-->
         <!--        </dependency>-->
-
+        <!-- https://mvnrepository.com/artifact/org.jooq/jooq -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.16.6</version>
+        </dependency>
     </dependencies>
 
     <build>
