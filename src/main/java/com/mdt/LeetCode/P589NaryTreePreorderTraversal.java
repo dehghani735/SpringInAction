@@ -1,17 +1,17 @@
 package com.mdt.LeetCode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Easy
- * Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
+ * Given the root of an n-ary tree, return the preorder traversal of its nodes' values.
  * <p>
- * Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples)
  * date: 6/9/22
  */
-public class P590NaryTreePostorderTraversal {
+public class P589NaryTreePreorderTraversal {
     class Solution {
 
         /**
@@ -20,29 +20,26 @@ public class P590NaryTreePostorderTraversal {
          * @param root
          * @return
          */
-        public List<Integer> postorder(Node root) {
+        public List<Integer> preorder(Node root) {
             var arr = new ArrayList<Integer>();
-            postorder(root, arr);
+            preorder(root, arr);
 
             return arr;
         }
 
-        private void postorder(Node root, ArrayList<Integer> arr) {
+        private void preorder(Node root, ArrayList<Integer> arr) {
             if (root == null)
                 return;
-            for (var child : root.children) {
-                postorder(child, arr);
-            }
             arr.add(root.val);
+            for (var child : root.children) {
+                preorder(child, arr);
+            }
         }
 
         /**
-         * Nick's solution
          * TODO review and try to understand
-         * @param root
-         * @return
          */
-        public List<Integer> postorder2(Node root) {
+        public List<Integer> preorder2(Node root) {
             var stack      = new LinkedList<Node>();
             var output_arr = new LinkedList<Integer>();
 
@@ -52,12 +49,12 @@ public class P590NaryTreePostorderTraversal {
             stack.add(root);
             while (!stack.isEmpty()) {
                 var node = stack.pollLast();
-                output_arr.addFirst(node.val);
+                output_arr.add(node.val);
+                Collections.reverse(node.children);
                 for (var child : node.children) {
                     stack.add(child);
                 }
             }
-
             return output_arr;
         }
     }
