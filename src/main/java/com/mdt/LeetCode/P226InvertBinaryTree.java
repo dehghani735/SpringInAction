@@ -2,6 +2,7 @@ package com.mdt.LeetCode;
 
 /**
  * Easy
+ * <p>
  * Given the root of a binary tree, invert the tree, and return its root.
  * <p>
  * date: 6/9/22

@@ -2,7 +2,9 @@ package com.mdt.LeetCode;
 
 /**
  * Easy
+ * <p>
  * Given the head of a singly linked list, return true if it is a palindrome.
+ * <p>
  * date: 6/9/22
  * <p>
  * TODO: recursive solution is available in cracking book?

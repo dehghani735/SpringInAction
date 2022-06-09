@@ -2,7 +2,9 @@ package com.mdt.LeetCode;
 
 /**
  * Easy
+ * <p>
  * Given the head of a singly linked list, reverse the list, and return the reversed list.
+ * <p>
  * date: 6/8/22
  * <p>
  * TODO: solve Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?

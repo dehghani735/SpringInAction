@@ -6,9 +6,11 @@ import java.util.List;
 
 /**
  * Easy
+ * <p>
  * Given the root of an n-ary tree, return the postorder traversal of its nodes' values.
  * <p>
  * Nary-Tree input serialization is represented in their level order traversal. Each group of children is separated by the null value (See examples)
+ * <p>
  * date: 6/9/22
  */
 public class P590NaryTreePostorderTraversal {
@@ -39,6 +41,7 @@ public class P590NaryTreePostorderTraversal {
         /**
          * Nick's solution
          * TODO review and try to understand
+         *
          * @param root
          * @return
          */
