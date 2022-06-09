@@ -5,7 +5,7 @@ package com.mdt.LeetCode;
  * Given the head of a singly linked list, return true if it is a palindrome.
  * date: 6/9/22
  * <p>
- * TODO: recursive solution is availble in cracking book?
+ * TODO: recursive solution is available in cracking book?
  */
 public class P234PalindromeLinkedList {
     class Solution {
