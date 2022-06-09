@@ -32,4 +32,9 @@ public class P9PalindromeNumber {
             return true;
         else return false;
     }
+
+    public static void main(String[] args) {
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
+    }
 }
