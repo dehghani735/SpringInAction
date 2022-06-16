@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  * <p>
  * Return any array that satisfies this condition.
  * <p>
- * date: 6/15/22
+ * date: 6/16/22
  */
 public class P905SortArrayByParity {
 
