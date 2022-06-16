@@ -2,6 +2,12 @@ package com.mdt.LeetCode;
 
 import java.util.HashSet;
 
+/**
+ * Easy
+ *
+ *
+ * date: 6/15/22
+ */
 public class P804UniqueMorseCodeWords {
 
     public int uniqueMorseRepresentations(String[] words) {
