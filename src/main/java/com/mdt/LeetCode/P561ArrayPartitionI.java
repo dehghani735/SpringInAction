@@ -28,6 +28,12 @@ public class P561ArrayPartitionI {
 
     final static int K = 10000;
 
+    /**
+     * TODO: do it again, counting sort algorithm idea is useful here
+     *
+     * @param nums
+     * @return
+     */
     public int arrayPairSum2(int[] nums) {
         // Store the frequency of each element
         int[] elementToCount = new int[2 * K + 1];
