@@ -11,7 +11,7 @@ import java.util.ArrayDeque;
  * <p>
  * For example, if s = "abcde", then it will be "bcdea" after one shift.
  * <p>
- * date: 6/18/22
+ * date: 6/19/22
  */
 public class P796RotateString {
 
