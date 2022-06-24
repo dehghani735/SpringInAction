@@ -13,6 +13,13 @@ package com.mdt.LeetCode;
  */
 public class P859BuddyStrings {
 
+    /**
+     * leetcode's solution
+     *
+     * @param s
+     * @param goal
+     * @return
+     */
     public boolean buddyStrings(String s, String goal) {
         if (s.length() != goal.length())
             return false;
