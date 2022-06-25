@@ -1,7 +1,9 @@
 package com.mdt.LeetCode;
 
 /**
+ * Easy
  *
+ * date: 6/26/22
  */
 public class P860LemonadeChange {
 
