@@ -19,6 +19,7 @@ public class P832FlippingAnImage {
 
     /**
      * Nick's solution has a trick idea. while left and right pointers have different values, skip. else invert them.
+     * Idea: two pointer
      *
      * @param image
      * @return
