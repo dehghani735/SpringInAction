@@ -9,7 +9,7 @@ package com.mdt.LeetCode;
  * <p>
  * Given two axis-aligned rectangles rec1 and rec2, return true if they overlap, otherwise return false.
  * <p>
- * date: 6/30/22
+ * date: 7/01/22
  */
 public class P836RectangleOverlap {
 
