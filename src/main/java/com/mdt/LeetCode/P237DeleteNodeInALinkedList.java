@@ -12,7 +12,7 @@ package com.mdt.LeetCode;
 public class P237DeleteNodeInALinkedList {
 
     /**
-     * Nick's solution
+     * Nick's solution.
      *
      * @param node
      */
