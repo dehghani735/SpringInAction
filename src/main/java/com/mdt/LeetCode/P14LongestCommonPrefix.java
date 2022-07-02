@@ -42,7 +42,7 @@ public class P14LongestCommonPrefix {
     }
 
     /**
-     * Nick's solution
+     * Nick's solution.
      *
      * @param strs
      * @return
