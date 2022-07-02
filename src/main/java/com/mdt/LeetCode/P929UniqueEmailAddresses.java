@@ -42,7 +42,7 @@ public class P929UniqueEmailAddresses {
     }
 
     /**
-     * nick's solution using subsring method
+     * Nick's solution using substring method
      *
      * @param emails
      * @return
