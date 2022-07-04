@@ -14,6 +14,8 @@ import java.util.HashMap;
 public class P290WordPattern {
 
     /**
+     * my solution
+     *
      * @param pattern
      * @param s
      * @return
