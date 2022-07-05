@@ -18,24 +18,17 @@ public class P66PlusOne {
      * @return
      */
     public int[] plusOne(int[] digits) {
-        var length       = digits.length;
-        var hasRemainder = true;
+        var length = digits.length;
         for (var i = length - 1; i >= 0; i--) {
-            var result = digits[i] + (hasRemainder ? 1 : 0);
-            if (result == 10) {
-                hasRemainder = true;
-                digits[i]    = 0;
-                var dest = new int[digits.length + 1];
-                if (i == 0) {
-                    System.arraycopy(digits, 0, dest, 1, digits.length);
-                    dest[0] = 1;
-                    return dest;
-                }
-            } else {
-                digits[i] = result;
-                break;
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
             }
+            digits[i] = 0;
         }
-        return digits;
+        var newNumber = new int[length + 1];
+        newNumber[0] = 1;
+
+        return newNumber;
     }
 }
