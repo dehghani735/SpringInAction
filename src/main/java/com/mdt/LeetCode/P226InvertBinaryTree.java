@@ -21,7 +21,7 @@ public class P226InvertBinaryTree {
         return root;
     }
 
-    class TreeNode {
+    static class TreeNode {
         int      val;
         TreeNode left;
         TreeNode right;
