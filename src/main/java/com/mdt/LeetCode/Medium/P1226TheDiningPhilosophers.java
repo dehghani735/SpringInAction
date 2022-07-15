@@ -10,6 +10,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * TODO read lock semaphore
  */
 public class P1226TheDiningPhilosophers {
+
+    /**
+     * solution from discussions
+     */
     class DiningPhilosophers {
         private Lock      forks[]   = new Lock[5];
         private Semaphore semaphore = new Semaphore(4);
