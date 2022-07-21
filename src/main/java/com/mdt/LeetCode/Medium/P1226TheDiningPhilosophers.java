@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * medium
+ * Medium
  * <p>
  * TODO read lock semaphore
  */
