@@ -23,7 +23,6 @@ public class P167TwoSumIIInputArrayIsSorted {
      * @return
      */
     public int[] twoSum(int[] numbers, int target) {
-
         for (var i = 0; i < numbers.length; i++) {
             var index1 = numbers[i];
             var index2 = target - index1;

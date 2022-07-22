@@ -38,6 +38,7 @@ public class P589NaryTreePreorderTraversal {
         }
 
         /**
+         * Nick's solution
          * TODO review and try to understand
          */
         public List<Integer> preorder2(Node root) {
