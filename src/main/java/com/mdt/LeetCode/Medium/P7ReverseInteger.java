@@ -14,6 +14,8 @@ public class P7ReverseInteger {
     /**
      * Nick's solution
      *
+     * time complexity is O(log10 x)
+     *
      * @param x
      * @return
      */
