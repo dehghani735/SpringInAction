@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class P559MaximumDepthOfNaryTree {
 
-    class Node {
+    public class Node {
         public int        val;
         public List<Node> children;
 
