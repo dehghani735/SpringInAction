@@ -37,5 +37,4 @@ public class P515FindLargestValueInEachTreeRow {
 
         return largestValue;
     }
-
 }
