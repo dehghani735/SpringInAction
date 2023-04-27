@@ -1,4 +1,4 @@
-package com.mdt.FunctionalAndReactive.M14_Collections;
+package com.mdt.FunctionalAndReactive.M14_Collections.List;
 
 public class Movie {
 
