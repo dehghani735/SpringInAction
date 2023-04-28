@@ -103,7 +103,7 @@ public abstract class ListFun<T> {
 
         @Override
         public boolean isEmpty() {
-            return false;
+            return true;
         }
     }
 

@@ -21,12 +21,11 @@ public class ListDemo {
 
 
         ListFun<Integer> list1 = ListFun.list(3, 6, 9, 8);
-//        ListFun<Integer> list2 = ListFun.list(35, 78, 90);
-//        ListFun.concat(list1, list2).forEach(System.out::println);
-//
+        ListFun<Integer> list2 = ListFun.list(35, 78, 90);
+        ListFun.concat(list1, list2).forEach(System.out::println);
         System.out.println();
 
-        List<Integer> l = List.of(3 ,5 ,6,7);
+        List<Integer> l = List.of(3, 5, 6, 7);
         list1.addAllEle(l).forEach(System.out::println);
     }
 }
