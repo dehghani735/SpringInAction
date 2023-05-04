@@ -1,4 +1,4 @@
-package com.mdt.FunctionalAndReactive.M15_FunctionalDS.M13_4_Queue;
+package com.mdt.FunctionalAndReactive.M15_FunctionalDS.M15_4_Queue;
 
 public class QueueDemo {
 
