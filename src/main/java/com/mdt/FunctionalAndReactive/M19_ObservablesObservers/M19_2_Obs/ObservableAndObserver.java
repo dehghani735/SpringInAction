@@ -1,4 +1,4 @@
-package com.mdt.FunctionalAndReactive.M19_ObservablesObservers.Obs;
+package com.mdt.FunctionalAndReactive.M19_ObservablesObservers.M19_2_Obs;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
