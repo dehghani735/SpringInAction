@@ -10,9 +10,20 @@ public class CallBackDemo {
             @Override
             public void run() {
                 new CallBackDemo().runningAsync(new CallBack() {
+
                     @Override
-                    public void call() {
-                        System.out.println("Callback called!");
+                    public void pushData(String data) {
+                        System.out.println("CallBack data: " + data);
+                    }
+
+                    @Override
+                    public void pushComplete() {
+                        System.out.println("CallBack done !");
+                    }
+
+                    @Override
+                    public void pushError(Exception ex) {
+                        System.out.println("CallBack Error called, Got an Exception: " + ex);
                     }
                 });
             }
@@ -29,7 +40,12 @@ public class CallBackDemo {
     public void runningAsync(CallBack callBack) {
         System.out.println("I am running a separate thread");
         sleep(1000);
-        callBack.call();
+        callBack.pushData("Data1");
+        callBack.pushData("Data2");
+        callBack.pushData("Data3");
+
+        callBack.pushError(new RuntimeException("Oops!"));  // One of the pushComplete or pushError will be called in real scenarios.
+        callBack.pushComplete();
     }
 
     private void sleep(int duration) {
