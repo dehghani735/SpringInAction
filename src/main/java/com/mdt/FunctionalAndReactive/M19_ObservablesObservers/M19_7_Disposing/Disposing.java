@@ -2,11 +2,9 @@ package com.mdt.FunctionalAndReactive.M19_ObservablesObservers.M19_7_Disposing;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import javax.validation.constraints.NotNull;
 import java.util.concurrent.TimeUnit;
 
 public class Disposing {
@@ -15,8 +13,7 @@ public class Disposing {
 
     public static void main(String[] args) throws InterruptedException {
 
-        @NonNull
-        Observable<Long> source = Observable.interval(1, TimeUnit.SECONDS);
+        @NonNull Observable<Long> source = Observable.interval(1, TimeUnit.SECONDS);
 
         Disposable d1 = source.subscribe(e -> System.out.println("Observer 1: " + e));
         Disposable d2 = source.subscribe(e -> System.out.println("Observer 2: " + e));
