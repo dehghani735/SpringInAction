@@ -1,4 +1,4 @@
-package com.mdt.FunctionalAndReactive.M21_CombiningObservables;
+package com.mdt.FunctionalAndReactive.M21_CombiningObservables.M21_2_MergeAndConcat;
 
 import io.reactivex.rxjava3.core.Observable;
 
