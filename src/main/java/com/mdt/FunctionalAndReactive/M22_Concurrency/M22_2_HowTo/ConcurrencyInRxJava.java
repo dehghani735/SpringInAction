@@ -1,4 +1,4 @@
-package com.mdt.FunctionalAndReactive.M22_Concurrency;
+package com.mdt.FunctionalAndReactive.M22_Concurrency.M22_2_HowTo;
 
 import io.reactivex.rxjava3.core.Observable;
 
