@@ -48,7 +48,7 @@ public class Q4 {
         log.info(String.valueOf(Integer.parseInt("10", 8))); // Exciting, 8 got Exception
     }
 
-    boolean isPermutationOfPalindrome1(String str) {
+     public boolean isPermutationOfPalindrome1(String str) {
         var table = buildCharFrequencyTable(str);
         return checkOneOdd(table);
     }
@@ -92,7 +92,7 @@ public class Q4 {
         return -1;
     }
 
-    boolean isPermutationOfPalindrome2(String str) {
+     public boolean isPermutationOfPalindrome2(String str) {
         var table        = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
         var numberOfOdds = 0;
         for (var c : str.toCharArray()) {
@@ -112,7 +112,7 @@ public class Q4 {
     /**
      * idea: bit vector
      */
-    boolean isPermutationOfPalindrome3(String str) {
+    public boolean isPermutationOfPalindrome3(String str) {
         var bitVector = createBitVector(str);
         return bitVector == 0 || atMostOneBitSet(bitVector);
     }

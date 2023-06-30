@@ -59,7 +59,7 @@ public class Q1 {
      * @param str
      * @return Whether all characters are unique.
      */
-    boolean isASCIIUnique(String str) {
+    public boolean isASCIIUnique(String str) {
         if (str.length() > 128) return false;
 
         var charSet = new boolean[128]; // Note: It's false by default
@@ -88,7 +88,7 @@ public class Q1 {
      * @param str
      * @return Whether all characters are unique.
      */
-    boolean isAtoZUnique(String str) {
+    public boolean isAtoZUnique(String str) {
         int checker = 0; // bit vector
         for (int i = 0; i < str.length(); i++) {
             int val = str.charAt(i) - 'a';

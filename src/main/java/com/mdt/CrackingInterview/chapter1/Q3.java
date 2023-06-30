@@ -33,7 +33,7 @@ public class Q3 {
      * @param trueLength
      * @return
      */
-    String urlify(String str, int trueLength) {
+    public String urlify(String str, int trueLength) {
         var chars      = str.toCharArray();
         var length     = chars.length;
         var difference = length - trueLength;

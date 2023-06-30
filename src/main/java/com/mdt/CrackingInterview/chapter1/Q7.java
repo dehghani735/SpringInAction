@@ -15,11 +15,11 @@ public class Q7 {
 
     public static void main(String[] args) {
         var q7     = new Q7();
-        var result = rotateMatrix();
+        var result = q7.rotateMatrix();
     }
 
     // TODO implement
-    private static String rotateMatrix() {
+    public String rotateMatrix() {
         return "";
     }
 }
