@@ -33,7 +33,7 @@ public class P206ReverseLinkedList {
     }
 
     /**
-     * Nick white's solution => I think this solution is O(1) space, because it does not clone and it's inline reversing.
+     * Nick white's solution => I think this solution is O(1) space, because it does not clone, and it's inline reversing.
      */
     class Solution2 {
         public ListNode reverseList(ListNode head) {
