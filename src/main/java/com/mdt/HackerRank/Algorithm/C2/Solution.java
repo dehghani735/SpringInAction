@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class Solution {
 
+    /**
+     * finds the indices of two items on the menu that allow us to spend all our money
+     * @param menu
+     * @param money
+     * @return
+     */
     public static int[] findChoices(int[] menu, int money) {
         var sortedMenu = menu.clone();
         Arrays.sort(sortedMenu);
