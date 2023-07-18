@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * Easy
  * <p>
- * Given the root of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently occurred element) in it.
+ * Given the root of a binary search tree (BST) with duplicates, return all the mode(s) (i.e., the most frequently
+ * occurred element) in it.
  * <p>
  * If the tree has more than one mode, return them in any order.
  * <p>
@@ -20,12 +21,13 @@ import java.util.List;
  */
 public class P501FindModeInBinarySearchTree {
 
-    Integer prev  = null; // nice way to check a variable to identify it is not set before
-    int     count = 1;
-    int     max   = 0;
+    Integer prev = null; // nice way to check a variable to identify it is not set before
+    int count = 1;
+    int max = 0;
 
     /**
      * Nick's solution. TODO needs review
+     *
      * @param root
      * @return
      */
@@ -36,7 +38,7 @@ public class P501FindModeInBinarySearchTree {
 
         var result = new int[modes.size()];
         for (var i = 0; i < modes.size(); i++)
-             result[i] = modes.get(i);
+            result[i] = modes.get(i);
 
         return result;
     }

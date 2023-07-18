@@ -5,11 +5,14 @@ import java.util.Arrays;
 /**
  * Easy
  * <p>
- * Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2), ..., (an, bn) such that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.
+ * Given an integer array nums of 2n integers, group these integers into n pairs (a1, b1), (a2, b2), ..., (an, bn) such
+ * that the sum of min(ai, bi) for all i is maximized. Return the maximized sum.
  * <p>
  * date: 6/17/22
  */
 public class P561ArrayPartitionI {
+
+    final static int K = 10_000;
 
     /**
      * O(n logn) time complexity, O(n) for space complexity of sort algorithm
@@ -26,8 +29,6 @@ public class P561ArrayPartitionI {
         return sum;
     }
 
-    final static int K = 10000;
-
     /**
      * TODO: do it again, counting sort algorithm idea is useful here
      *
@@ -43,7 +44,7 @@ public class P561ArrayPartitionI {
         }
 
         // Initialize sum to zero
-        int     maxSum      = 0;
+        int maxSum = 0;
         boolean isEvenIndex = true;
         for (int element = 0; element <= 2 * K; element++) {
             while (elementToCount[element] > 0) {

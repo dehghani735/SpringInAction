@@ -3,7 +3,8 @@ package com.mdt.LeetCode.Easy;
 /**
  * Easy
  * <p>
- * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+ * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not
+ * exist, return the maximum number.
  * <p>
  * date: 7/04/22
  */

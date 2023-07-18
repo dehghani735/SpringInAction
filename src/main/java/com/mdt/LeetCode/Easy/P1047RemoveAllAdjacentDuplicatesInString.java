@@ -6,7 +6,8 @@ import java.util.Deque;
 /**
  * Easy
  * <p>
- * You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two adjacent and equal letters and removing them.
+ * You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two
+ * adjacent and equal letters and removing them.
  * <p>
  * We repeatedly make duplicate removals on s until we no longer can.
  * <p>
@@ -22,7 +23,7 @@ public class P1047RemoveAllAdjacentDuplicatesInString {
      */
     public String removeDuplicates(String s) {
 
-        Deque<Character> stack = new ArrayDeque<Character>();
+        Deque<Character> stack = new ArrayDeque<>();
         for (var c : s.toCharArray()) {
 
             if (!stack.isEmpty() && stack.peek() == c)

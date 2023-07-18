@@ -3,15 +3,24 @@ package com.mdt.LeetCode.Easy;
 /**
  * Easy
  * <p>
- * You are given a license key represented as a string s that consists of only alphanumeric characters and dashes. The string is separated into n + 1 groups by n dashes. You are also given an integer k.
+ * You are given a license key represented as a string s that consists of only alphanumeric characters and dashes.
+ * The string is separated into n + 1 groups by n dashes. You are also given an integer k.
  * <p>
- * We want to reformat the string s such that each group contains exactly k characters, except for the first group, which could be shorter than k but still must contain at least one character. Furthermore, there must be a dash inserted between two groups, and you should convert all lowercase letters to uppercase.
+ * We want to reformat the string s such that each group contains exactly k characters, except for the first group,
+ * which could be shorter than k but still must contain at least one character. Furthermore, there must be a dash
+ * inserted between two groups, and you should convert all lowercase letters to uppercase.
  * <p>
  * Return the reformatted license key.
  * <p>
  * date: 6/20/22
  */
 public class P482LicenseKeyFormatting {
+
+    public static void main(String[] args) {
+        var problem = new P482LicenseKeyFormatting();
+        System.out.println(problem.licenseKeyFormatting("5F3Z-2e-9-w", 4));
+
+    }
 
     /**
      * my complex and shet solution
@@ -61,10 +70,5 @@ public class P482LicenseKeyFormatting {
             result.insert(i, "-"); // interesting
         }
         return result.toString();
-    }
-
-    public static void main(String[] args) {
-        var problem = new P482LicenseKeyFormatting();
-        System.out.println(problem.licenseKeyFormatting("5F3Z-2e-9-w", 4));
     }
 }

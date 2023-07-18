@@ -10,7 +10,7 @@ package com.mdt.LeetCode.Easy;
 public class P160IntersectionOfTwoLinkedLists {
 
     /**
-     * my solution, but complext
+     * my solution, but complex
      *
      * @param headA
      * @param headB
