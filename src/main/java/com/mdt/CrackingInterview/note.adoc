@@ -1,0 +1,20 @@
+= Cracking the Coding interview
+
+== Chapter 1
+
+Use Character arrays instead of Strings, in string manipulation; Since Strings are immutable.
+
+This is a paragraph with a soft
+line break.
+
+This is another paragraph that has
+
+____
+
+Some text that
+is in a
+block quote.
+
+____
+
+This is another paragraph with a [line-through]#strikethrough# word.

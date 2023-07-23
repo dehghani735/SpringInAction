@@ -33,8 +33,42 @@ public class P9PalindromeNumber {
         else return false;
     }
 
+//    public static void main(String[] args) {
+//        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(Integer.MIN_VALUE);
+//    }
+
     public static void main(String[] args) {
-        System.out.println(Integer.MAX_VALUE);
-        System.out.println(Integer.MIN_VALUE);
+        String str = "abc def";
+        String reversedString = reverseWords(str);
+        System.out.println(reversedString);
+    }
+
+    public static String reverseWords(String str) {
+        char[] charArray = str.toCharArray();
+        int start = 0;
+        int end = 0;
+        while (end < charArray.length) {
+            if (charArray[end] == ' ') {
+                reverseWord(charArray, start, end - 1);
+                start = end + 1;
+            }
+            end++;
+        }
+
+        // Reverse the last word
+        reverseWord(charArray, start, end - 1);
+
+        return new String(charArray);
+    }
+
+    public static void reverseWord(char[] charArray, int start, int end) {
+        while (start < end) {
+            char temp = charArray[start];
+            charArray[start] = charArray[end];
+            charArray[end] = temp;
+            start++;
+            end--;
+        }
     }
 }

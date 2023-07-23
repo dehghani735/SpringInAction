@@ -15,9 +15,9 @@ public class MultiStack {
             this.capacity = capacity;
         }
 
-        public boolean isWithinStackCapacity(int index) {
-            if (index < 0 || index >= values.length)
-                return false;
-        }
+//        public boolean isWithinStackCapacity(int index) {
+//            if (index < 0 || index >= values.length)
+//                return false;
+//        }
     }
 }
