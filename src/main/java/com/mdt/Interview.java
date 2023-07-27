@@ -40,7 +40,7 @@ class MarkdownProcessor {
         String markdown2 = """
                 # Heading
                         
-                This is **bold** and this is *italic*.""";
+                This is **bold** and this is *italic*. salam.""";
         String markdown3 = """
                 This is a paragraph with a soft
                 line break.
@@ -50,10 +50,17 @@ class MarkdownProcessor {
                 > is in a
                 > block quote.
 
+                # Heading
+                   
+                This is **bold** and this is *italic*.
+
                 This is another paragraph with a ~~strikethrough~~ word.""";
 
-        String html = convertToHtml(markdown2);
-        System.out.println(html);
+//        String html = convertToHtml(markdown2);
+//        System.out.println(html);
+
+        var html2 = markdown(markdown);
+        System.out.println(html2);
     }
 
 //    public static String convertToHtml(String markdown) {
@@ -152,6 +159,8 @@ class MarkdownProcessor {
 
                     // Generate HTML italic tags
                     html.append("<em>").append(italicContent).append("</em>");
+
+                    i++; // I added
                 }
             } else if (c == '\n') {
                 // Replace newlines with HTML line breaks
@@ -165,5 +174,113 @@ class MarkdownProcessor {
         }
 
         return html.toString();
+    }
+
+    public static String markdown(String input) {
+        int i = 0;
+        StringBuilder res = new StringBuilder("<p>");
+        boolean blockIsActive = false, isNewPara = true, strikethroughBegan = false;
+
+        while (i < input.length()) {
+            String ch = null;
+            if (i == (input.length() - 1)) {
+                ch = String.valueOf(input.charAt(i));
+            } else
+                ch = input.substring(i, i + 2); // todo exception, what if there is no more than one char remained.
+            String newLine = input.substring(i, i + 1);
+
+            if (newLine.equals("\n")) {
+                if (input.substring(i + 1, i + 2).equals("\n")) {
+                    if (blockIsActive) {
+                        res.append("</blockquote>");
+                        blockIsActive = false;
+                    }
+                    res.append("</p>");
+                    res.append("<p>");
+                    i += 2;
+                } else {
+                    res.append("<br />");
+                    i += 1;
+                }
+            } else if (ch.equals("> ")) {
+                if (!blockIsActive) {
+                    res.append("<blockquote>");
+                    blockIsActive = true;
+                }
+                i += 2;
+            } else if (ch.equals("~~")) {
+                if (!strikethroughBegan) {
+                    res.append("<del>");
+                    strikethroughBegan = true;
+                } else {
+                    res.append("</del>");
+                }
+                i += 2;
+            }
+
+            /////////////////////////
+            else if (newLine.equals("#")) {
+                int headingLevel = 0;
+                while (i < input.length() && input.charAt(i) == '#') {
+                    headingLevel++;
+                    i++;
+                }
+                // Skip whitespace after heading markers
+                while (i < input.length() && input.charAt(i) == ' ') {
+                    i++;
+                }
+                // Extract heading content
+                StringBuilder headingContent = new StringBuilder();
+                while (i < input.length() && input.charAt(i) != '\n') {
+                    headingContent.append(input.charAt(i));
+                    i++;
+                }
+                // Generate HTML heading tags
+                res.append("<h").append(headingLevel).append(">").append(headingContent).append("</h").append(headingLevel).append(">");
+            } else if (newLine.equals("*")) {
+                // Check for bold or italic
+                if (i + 1 < input.length() && input.charAt(i + 1) == '*') {
+                    i += 2;
+
+                    // Extract bold content
+                    StringBuilder boldContent = new StringBuilder();
+                    while (i < input.length() && !(input.charAt(i) == '*' && input.charAt(i + 1) == '*')) {
+                        boldContent.append(input.charAt(i));
+                        i++;
+                    }
+
+                    // Generate HTML bold tags
+                    res.append("<strong>").append(boldContent).append("</strong>");
+
+                    i += 2;
+                } else {
+                    i++;
+
+                    // Extract italic content
+                    StringBuilder italicContent = new StringBuilder();
+                    while (i < input.length() && input.charAt(i) != '*') {
+                        italicContent.append(input.charAt(i));
+                        i++;
+                    }
+
+                    // Generate HTML italic tags
+                    res.append("<em>").append(italicContent).append("</em>");
+
+                    i++; // I added it
+                }
+            }
+            ///////
+
+
+            else {
+                res.append(input.charAt(i));
+                i += 1;
+            }
+        }
+        res.append("</p>");
+        return res.toString();
+
+
+        // bugs : <p> before <h1>  ==>  <h1> only
     }
 }
