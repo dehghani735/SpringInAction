@@ -23,6 +23,7 @@ public class Test {
         boolean b8 = set2.add(8);
         for (Integer integer : set2) System.out.print(integer + ", ");
 
+        System.out.println("");
         NavigableSet<Integer> set3 = new TreeSet<>();
         for (int i = 0; i <= 20; i++)
             set3.add(i);

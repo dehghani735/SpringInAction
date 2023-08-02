@@ -5,7 +5,8 @@ import java.util.HashSet;
 /**
  * Easy
  * <p>
- * Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+ * Given an integer array nums, return true if any value appears at least twice in the array, and return false if every
+ * element is distinct.
  * <p>
  * date: 6/7/22
  * <p>

@@ -1,5 +1,7 @@
 package com.mdt;
 
+import java.util.*;
+
 public class Interview {
 
     public static void main(String[] args) {
@@ -51,7 +53,7 @@ class MarkdownProcessor {
                 > block quote.
 
                 # Heading
-                   
+
                 This is **bold** and this is *italic*.
 
                 This is another paragraph with a ~~strikethrough~~ word.""";
@@ -59,47 +61,11 @@ class MarkdownProcessor {
 //        String html = convertToHtml(markdown2);
 //        System.out.println(html);
 
-        var html2 = markdown(markdown);
+        var html2 = markdown(markdown3);
         System.out.println(html2);
+
+
     }
-
-//    public static String convertToHtml(String markdown) {
-//        // Convert headings
-//        markdown = markdown.replaceAll("^# (.+)$", "<h1>$1</h1>");
-//        markdown = markdown.replaceAll("^## (.+)$", "<h2>$1</h2>");
-//        markdown = markdown.replaceAll("^### (.+)$", "<h3>$1</h3>");
-//
-//        // Convert bold and italic
-//        markdown = markdown.replaceAll("\\*\\*(.+?)\\*\\*", "<strong>$1</strong>");
-//        markdown = markdown.replaceAll("\\*(.+?)\\*", "<em>$1</em>");
-//
-//        // Convert paragraphs
-//        markdown = markdown.replaceAll("^(.+)$", "<p>$1</p>");
-//
-//        return markdown;
-//    }
-
-//     public static String convertToHtml(String markdown) {
-//         StringBuilder html = new StringBuilder();
-//
-//         String[] lines = markdown.split("\n");
-//         for (String line : lines) {
-//             if (line.startsWith("# ")) {
-//                 String heading = line.substring(2);
-//                 html.append("<h1>").append(heading).append("</h1>");
-//             } else if (line.startsWith("## ")) {
-//                 String heading = line.substring(3);
-//                 html.append("<h2>").append(heading).append("</h2>");
-//             } else if (line.startsWith("### ")) {
-//                 String heading = line.substring(4);
-//                 html.append("<h3>").append(heading).append("</h3>");
-//             } else {
-//                 html.append("<p>").append(line).append("</p>");
-//             }
-//         }
-//
-//         return html.toString();
-//     }
 
     public static String convertToHtml(String markdown) {
         StringBuilder html = new StringBuilder();
@@ -176,10 +142,49 @@ class MarkdownProcessor {
         return html.toString();
     }
 
+//    public static String convertToHtml(String markdown) {
+//        // Convert headings
+//        markdown = markdown.replaceAll("^# (.+)$", "<h1>$1</h1>");
+//        markdown = markdown.replaceAll("^## (.+)$", "<h2>$1</h2>");
+//        markdown = markdown.replaceAll("^### (.+)$", "<h3>$1</h3>");
+//
+//        // Convert bold and italic
+//        markdown = markdown.replaceAll("\\*\\*(.+?)\\*\\*", "<strong>$1</strong>");
+//        markdown = markdown.replaceAll("\\*(.+?)\\*", "<em>$1</em>");
+//
+//        // Convert paragraphs
+//        markdown = markdown.replaceAll("^(.+)$", "<p>$1</p>");
+//
+//        return markdown;
+//    }
+
+//     public static String convertToHtml(String markdown) {
+//         StringBuilder html = new StringBuilder();
+//
+//         String[] lines = markdown.split("\n");
+//         for (String line : lines) {
+//             if (line.startsWith("# ")) {
+//                 String heading = line.substring(2);
+//                 html.append("<h1>").append(heading).append("</h1>");
+//             } else if (line.startsWith("## ")) {
+//                 String heading = line.substring(3);
+//                 html.append("<h2>").append(heading).append("</h2>");
+//             } else if (line.startsWith("### ")) {
+//                 String heading = line.substring(4);
+//                 html.append("<h3>").append(heading).append("</h3>");
+//             } else {
+//                 html.append("<p>").append(line).append("</p>");
+//             }
+//         }
+//
+//         return html.toString();
+//     }
+
     public static String markdown(String input) {
         int i = 0;
-        StringBuilder res = new StringBuilder("<p>");
-        boolean blockIsActive = false, isNewPara = true, strikethroughBegan = false;
+        StringBuilder res = new StringBuilder();
+        boolean blockIsActive = false, isNewPara = false, strikethroughBegan = false, isAfterHeading = false;
+        int paraCounter = 0;
 
         while (i < input.length()) {
             String ch = null;
@@ -191,11 +196,18 @@ class MarkdownProcessor {
 
             if (newLine.equals("\n")) {
                 if (input.substring(i + 1, i + 2).equals("\n")) {
+                    paraCounter++;
+                    isNewPara = true;
                     if (blockIsActive) {
                         res.append("</blockquote>");
                         blockIsActive = false;
                     }
-                    res.append("</p>");
+                    if (paraCounter == 1 && !isAfterHeading)
+                        res.insert(0, "<p>");
+                    if (isNewPara && !isAfterHeading) {
+
+                        res.append("</p>");
+                    }
                     res.append("<p>");
                     i += 2;
                 } else {
@@ -217,9 +229,12 @@ class MarkdownProcessor {
                 }
                 i += 2;
             }
-
             /////////////////////////
             else if (newLine.equals("#")) {
+                if (isNewPara)
+                    res.delete(res.length() - 3, res.length());
+                isNewPara = false;
+                isAfterHeading = true;
                 int headingLevel = 0;
                 while (i < input.length() && input.charAt(i) == '#') {
                     headingLevel++;
@@ -270,17 +285,73 @@ class MarkdownProcessor {
                 }
             }
             ///////
-
-
             else {
+                isAfterHeading = false;
                 res.append(input.charAt(i));
                 i += 1;
             }
         }
-        res.append("</p>");
+        if (isNewPara)
+            res.append("</p>");
         return res.toString();
-
-
-        // bugs : <p> before <h1>  ==>  <h1> only
     }
+
+    public int solution(int[] A) {
+
+        // MissingInteger on codality demo test
+
+        // Implement your solution here
+
+//        Arrays.sort(A);
+//        if (A[A.length - 1] <= 0) return 1;
+//        if (A[0] > 1) return 1;
+//
+//        var result = 1;
+//        // var x = new HashMap<Integer, Integer>();
+//        for (var i = 0; i < A.length - 1; i++) {
+//            if (A[i] == A[i + 1]) continue;
+//            if (A[i] + 1 != A[i + 1]) result = A[i] + 1;
+//            else result = A[A.length - 1] + 1;
+//        }
+//        return result;
+//
+//
+//
+//
+//        // Implement your solution here
+//        Arrays.sort(A);
+//        if (A[A.length - 1] <= 0) return 1;
+//        if (A[0] > 1) return 1;
+//
+//        var result = 1;
+//        // var x = new HashMap<Integer, Integer>();
+//        for (var i = 0; i < A.length - 1; i++) {
+//            if (A[i] < 0) continue;
+//            if (A[i] == A[i + 1]) continue;
+//            if (A[i] + 1 != A[i + 1]) {
+//                result = A[i] + 1;
+//                return result;
+//            }
+//        }
+//        result = A[A.length - 1] + 1;
+//        return result;
+
+
+        HashSet<Integer> set = new HashSet<>();
+        // Add all positive integers in the array to the set
+        for (int num : A) {
+            if (num > 0) {
+                set.add(num);
+            }
+        }
+        // Find the smallest positive integer that does not occur in the array
+        int smallestMissing = 1;
+        while (set.contains(smallestMissing)) {
+            smallestMissing++;
+        }
+
+        return smallestMissing;
+    }
+
+
 }

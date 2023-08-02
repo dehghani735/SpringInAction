@@ -6,9 +6,11 @@ import java.util.HashMap;
 /**
  * Easy
  * <p>
- * Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum frequency of any one of its elements.
+ * Given a non-empty array of non-negative integers nums, the degree of this array is defined as the maximum frequency
+ * of any one of its elements.
  * <p>
- * Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same degree as nums
+ * Your task is to find the smallest possible length of a (contiguous) subarray of nums, that has the same degree as
+ * nums
  * <p>
  * date: 7/07/22
  */
@@ -16,6 +18,7 @@ public class P697DegreeOfAnArray {
 
     /**
      * my solution. but Nick's solution has one for loop and it's simpler.
+     *
      * @param nums
      * @return
      */
