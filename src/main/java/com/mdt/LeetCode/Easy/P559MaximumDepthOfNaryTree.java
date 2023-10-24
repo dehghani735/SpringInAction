@@ -10,7 +10,8 @@ import java.util.List;
  * <p>
  * The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
  * <p>
- * Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).
+ * Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by
+ * the null value (See examples).
  * <p>
  * date: 7/08/22
  */

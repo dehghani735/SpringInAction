@@ -1,6 +1,7 @@
 package com.mdt.codality;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Test {
 
@@ -16,8 +17,35 @@ public class Test {
         System.out.println(-1 % 24);
         var p = new Test();
         p.solution("12:01", "12:44");
-    }
 
+
+//        boolean b1 = true, b2 = false; int i1 = 1, i2 = 2;
+//        System.out.println(i2 && b1);
+
+//        int array[] = {1, 2, 3, 4};
+//        for (int i = 0; i < array.length; i++) {
+//            System.out.print(array[i]);
+//        }
+
+
+        var a = new Object[][]{{"Fred", "Jim", "Sheila"}, {1, 2}};
+        var b = new Object[][]{{"Fred", "Jim", "Sheila"}, {1, 2}};
+
+        System.out.println(Arrays.equals(a, b));
+
+//        Arrays.copyOf();
+
+        // hangs
+//        new Random().doubles(-1.0, 1.0)
+//                .average()
+//                .ifPresent(System.out::println);
+
+
+        Stream.of("Fred", "Jim", "Sheila")
+//                .flatMapToInt(s -> s.chars())
+                .map(s -> s.chars())
+                .forEach(System.out::println);
+    }
 
     public String solution(String[] A, String[] B, String P) {
         // Implement your solution here
@@ -35,7 +63,7 @@ public class Test {
         if (result.isPresent())
             return result.get().getKey();
 
-        else return "No Contact";
+        else return "NO CONTACT";
 
 //        Arrays.stream(B)
 //                .allMatch(phone -> {
@@ -128,7 +156,6 @@ public class Test {
         }
         return Arrays.stream(arr).max().getAsInt();
     }
-
 
     public int solution(int[] A, int k) {
         int[][] left = new int[A.length][2];
