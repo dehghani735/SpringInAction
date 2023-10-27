@@ -93,9 +93,6 @@ public class Test {
      */
     public int solution(String A, String B) {
         // Implement your solution here
-
-        // Implement your solution here
-        // Implement your solution here
         if (A.equals(B)) return 0;
         int counter = 0;
 
