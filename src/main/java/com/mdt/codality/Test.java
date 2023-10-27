@@ -1,6 +1,9 @@
 package com.mdt.codality;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Test {
@@ -47,6 +50,14 @@ public class Test {
                 .forEach(System.out::println);
     }
 
+    /**
+     * answer to task 1
+     *
+     * @param A
+     * @param B
+     * @param P
+     * @return
+     */
     public String solution(String[] A, String[] B, String P) {
         // Implement your solution here
 
@@ -73,6 +84,13 @@ public class Test {
 
     }
 
+    /**
+     * answer to task 2
+     *
+     * @param A
+     * @param B
+     * @return
+     */
     public int solution(String A, String B) {
         // Implement your solution here
 
@@ -135,6 +153,12 @@ public class Test {
         return counter;
     }
 
+    /**
+     * answer to task 3
+     *
+     * @param blocks
+     * @return
+     */
     public int solution(int[] blocks) {
         // Implement your solution here
         var arr = new int[blocks.length];
